@@ -166,6 +166,10 @@ table.wt .r{text-align:right;font-variant-numeric:tabular-nums}
 .toast.show{opacity:1}
 .install{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:14px;box-shadow:var(--shadow)}
 .install .x{margin-left:auto}
+.install.bk{border-color:rgba(181,112,27,.45);background:rgba(181,112,27,.08);flex-wrap:wrap}
+.bkico{font-size:28px;line-height:1;color:var(--warn)}
+nav button.due::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#f0b44c;margin-left:6px;vertical-align:2px}
+.panel .ok{color:var(--ok);font-weight:600}.panel .due{color:var(--warn);font-weight:600}
 .warnbox{background:rgba(181,112,27,.12);border:1px solid rgba(181,112,27,.35);color:var(--text);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:14px}
 .scan{grid-column:span 6;background:var(--surface2);border-radius:12px;padding:14px;border:1px dashed var(--line)}
 .scan h4{margin:0 0 4px;font:600 16px Georgia,serif;color:var(--accent)}
@@ -208,7 +212,7 @@ table.wt .r{text-align:right;font-variant-numeric:tabular-nums}
 <script>
 "use strict";
 const KEY = "ma-cave-v1";
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "1.1.1";
 const isStandalone = () => window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
 const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
 function showInstallHint(){ if(isStandalone() || !isIOS() || !location.protocol.startsWith("http")) return false; try{ return !localStorage.getItem(KEY+"-hint"); }catch(e){ return true; } }
@@ -232,7 +236,7 @@ function load(){
 }
 function save(){
   db.savedAt = new Date().toISOString();
-  try{ localStorage.setItem(KEY, JSON.stringify(db)); storageOK = true; }
+  try{ localStorage.setItem(KEY, JSON.stringify(db)); storageOK = true; noteChange(); }
   catch(e){ storageOK = false; toast("⚠️ Enregistrement impossible (stockage plein ou bloqué) — exportez une sauvegarde"); }
 }
 const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,7);
@@ -257,6 +261,7 @@ const totalValue = () => db.wines.reduce((s,w)=>s+(+w.quantite||0)*(+w.prix||0),
 function renderHeader(){
   const n = totalBottles(), r = db.wines.filter(w=>+w.quantite>0).length;
   $("#hdrSum").textContent = n+" bouteille"+(n>1?"s":"")+" · "+r+" référence"+(r>1?"s":"");
+  const tb = document.querySelector('#tabs [data-v="save"]'); if(tb) tb.classList.toggle("due", backupDue());
 }
 
 /* ---------- CAVE ---------- */
@@ -293,6 +298,7 @@ function renderCave(){
   const list = filtered();
   const nb = list.reduce((s,w)=>s+(+w.quantite||0),0);
   let h = "";
+  h += backupBanner();
   if(showInstallHint()) h += `<div class="install"><img src="apple-touch-icon.png" width="40" height="40" style="border-radius:9px" alt=""><div><b>Installez Ma Cave sur l'écran d'accueil</b><br>Touchez <b>Partager</b> <span aria-hidden="true">⬆︎</span> dans Safari, puis <b>« Sur l'écran d'accueil »</b>. Elle fonctionnera ensuite sans internet.</div><button class="btn ghost x" id="instX">OK</button></div>`;
   if(!storageOK) h += `<div class="warnbox">⚠️ Ce navigateur ne permet pas d'enregistrer les données. Utilisez « Sauvegarde » pour exporter régulièrement votre cave.</div>`;
   h += `<div class="toolbar">
@@ -936,7 +942,7 @@ function renderStats(){
 
   ui.dm = "btl"; const consHTML = columns("out", colsOut, {count:true, empty:"Aucune bouteille sortie ces 12 derniers mois"}); ui.dm = saveDm;
 
-  $("#main").innerHTML = `
+  $("#main").innerHTML = `${backupBanner()}
   <div class="dfil">
     <div class="seg" role="group" aria-label="Mesure"><button data-dm="btl" class="${isVal()?"":"on"}">Bouteilles</button><button data-dm="val" class="${isVal()?"on":""}">Valeur d'achat</button></div>
     <select class="f" id="dColor"><option value="">Toutes les couleurs</option>${COLORS.map(c=>`<option value="${c.k}" ${ui.dc===c.k?"selected":""}>${c.l}</option>`).join("")}</select>
@@ -1005,61 +1011,160 @@ function goCave(patch){
   setView("cave");
 }
 
-/* ---------- Backup ---------- */
+/* ---------- Sauvegarde (kDrive / Fichiers) ---------- */
+const BK = KEY+"-backup", PREFS = KEY+"-prefs", SNOOZE = KEY+"-snooze";
+function lsGet(k, def){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; }catch(e){ return def; } }
+function lsSet(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+let backup = lsGet(BK, {at:null, changes:0, since:null});
+let prefs = Object.assign({days:7, changes:10}, lsGet(PREFS, {}));
+
+function noteChange(){
+  if(!backup.changes) backup.since = new Date().toISOString();
+  backup.changes = (backup.changes||0) + 1; lsSet(BK, backup);
+}
+function markBackedUp(){ backup = {at:new Date().toISOString(), changes:0, since:null}; lsSet(BK, backup); lsSet(SNOOZE, 0); }
+function ago(iso){
+  if(!iso) return "jamais";
+  const d0 = new Date(iso), d = new Date(); d0.setHours(0,0,0,0); d.setHours(0,0,0,0);
+  const n = Math.round((d-d0)/864e5);
+  return n<=0 ? "aujourd'hui" : n===1 ? "hier" : `il y a ${n} jours`;
+}
+function backupDue(){
+  if(!db.wines.length || !backup.changes) return false;
+  if(Date.now() < (lsGet(SNOOZE,0)||0)) return false;
+  const ref = backup.at || backup.since, days = ref ? (Date.now()-new Date(ref))/864e5 : 0;
+  return (prefs.days>0 && days>=prefs.days) || (prefs.changes>0 && backup.changes>=prefs.changes);
+}
+function backupBanner(){
+  if(!backupDue()) return "";
+  const n = backup.changes;
+  return `<div class="install bk"><span class="bkico" aria-hidden="true">☁︎</span>
+    <div><b>Pensez à sauvegarder votre cave</b><br>Dernière sauvegarde : ${ago(backup.at)} · ${n} modification${n>1?"s":""} depuis.</div>
+    <span class="x" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-bk="save">Sauvegarder</button><button class="btn ghost" data-bk="later">Plus tard</button></span></div>`;
+}
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-bk]"); if(!b) return;
+  if(b.dataset.bk==="save") backupNow();
+  else { lsSet(SNOOZE, Date.now()+864e5); render(); toast("Rappel reporté à demain"); }
+});
+
+// Partage d'un fichier : sur iPad, ouvre le menu Partager (kDrive, Enregistrer dans Fichiers, AirDrop…).
+// Renvoie false si l'utilisateur a annulé.
 async function download(name, text, type){
   const blob = new Blob([text], {type});
   try{
     const file = new File([blob], name, {type});
-    if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], title:name}); return; }
-  }catch(e){ if(e && e.name==="AbortError") return; }
+    if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], title:name}); return true; }
+  }catch(e){ if(e && (e.name==="AbortError" || e.name==="NotAllowedError")) return false; }
   const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
   document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();}, 1500);
+  return true;
 }
 const stamp = () => new Date().toISOString().slice(0,10);
+async function backupNow(){
+  const ok = await download(`ma-cave-sauvegarde-${stamp()}.json`, JSON.stringify({app:"ma-cave", version:1, exportedAt:new Date().toISOString(), ...db}, null, 1), "application/json");
+  if(!ok){ toast("Sauvegarde annulée"); return; }
+  markBackedUp(); renderHeader(); render(); toast("✓ Sauvegarde envoyée");
+}
+
+// Import : sur iPad, la fenêtre « Parcourir » donne accès à kDrive via l'app Fichiers.
+function pickBackup(){
+  let inp = $("#impFile");
+  if(!inp){ inp = document.createElement("input"); inp.type = "file"; inp.id = "impFile"; inp.accept = ".json,application/json"; inp.hidden = true; document.body.appendChild(inp); }
+  inp.value = ""; inp.onchange = e=>{ const f = e.target.files[0]; if(f) importFile(f); };
+  inp.click();
+}
+function importFile(file){
+  const r = new FileReader();
+  r.onerror = ()=>toast("Impossible de lire ce fichier");
+  r.onload = ()=>{
+    let d;
+    try{ d = JSON.parse(r.result); if(!Array.isArray(d.wines)) throw 0; }
+    catch(err){ toast("Fichier invalide : ce n'est pas une sauvegarde de Ma Cave"); return; }
+    const nb = d.wines.reduce((s,w)=>s+(+w.quantite||0),0);
+    const when = d.exportedAt || d.savedAt;
+    const apply = mode=>{
+      if(mode==="replace"){ db.wines = d.wines; db.log = d.log||[]; }
+      else {
+        const ids = new Set(db.wines.map(w=>w.id)); d.wines.forEach(w=>{ if(!ids.has(w.id)) db.wines.push(w); });
+        const lids = new Set(db.log.map(l=>l.id)); (d.log||[]).forEach(l=>{ if(!lids.has(l.id)) db.log.push(l); });
+        db.log.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+      }
+      save();
+      if(mode==="replace") markBackedUp(); // la cave est identique au fichier de sauvegarde
+      closeModal(); renderHeader(); render(); toast(mode==="replace" ? "✓ Cave restaurée" : "✓ Vins ajoutés à la cave");
+    };
+    $("#modal").innerHTML = `
+      <div class="mh"><h2>Importer la sauvegarde</h2><button class="btn ghost" data-close>Annuler</button></div>
+      <div class="mb">
+        <p style="margin-top:0"><b>${esc(file.name)}</b><br>${d.wines.length} référence${d.wines.length>1?"s":""} · ${nb} bouteille${nb>1?"s":""}${when?` · sauvegardée le ${new Date(when).toLocaleString("fr-CH",{dateStyle:"short",timeStyle:"short"})}`:""}</p>
+        ${db.wines.length ? `<p style="color:var(--muted);font-size:14px">Votre cave actuelle contient ${db.wines.length} référence${db.wines.length>1?"s":""}.<br><b>Remplacer</b> : la cave devient exactement celle du fichier (à utiliser pour restaurer ou changer d'iPad).<br><b>Fusionner</b> : ajoute seulement les vins du fichier qui ne sont pas déjà dans la cave.</p>` : ""}
+      </div>
+      <div class="mf"><button class="btn ghost" data-close>Annuler</button>
+        ${db.wines.length ? `<button class="btn ghost" id="impMerge">Fusionner</button><button class="btn danger" id="impRep">Remplacer ma cave</button>` : `<button class="btn" id="impRep">Importer</button>`}</div>`;
+    openModal();
+    $("#impRep").onclick = ()=>apply("replace");
+    $("#impMerge") && ($("#impMerge").onclick = ()=>apply("merge"));
+  };
+  r.readAsText(file);
+}
+
 function renderSave(){
+  const due = backupDue(), n = backup.changes||0;
+  const stateTxt = !db.wines.length ? "Votre cave est vide." :
+    !n ? `<span class="ok">✓ Tout est sauvegardé</span> (dernière sauvegarde : ${ago(backup.at)}).` :
+    `${due?`<span class="due">⚠ Sauvegarde conseillée</span>`:"Modifications en attente"} : ${n} modification${n>1?"s":""} depuis la dernière sauvegarde (${ago(backup.at)}).`;
+  const opt = (v, cur, l) => `<option value="${v}" ${+cur===v?"selected":""}>${l}</option>`;
   $("#main").innerHTML = `
-  <div class="panel"><h3>Sauvegarder la cave</h3>
-    <p style="margin-top:0;color:var(--muted)">Les données sont enregistrées automatiquement sur cet iPad, dans le navigateur. Exportez régulièrement une copie de sécurité (dans Fichiers, iCloud Drive…) : si les données du navigateur sont effacées, c'est elle qui vous permettra de tout récupérer.</p>
-    <p style="margin-top:0;color:var(--muted);font-size:14px">Sur iPad, l'export ouvre le menu Partager : choisissez « Enregistrer dans Fichiers » puis iCloud Drive.</p>
-    <p style="font-size:14px">Dernier enregistrement : <b>${db.savedAt?new Date(db.savedAt).toLocaleString("fr-CH"):"—"}</b></p>
+  <div class="panel"><h3>☁︎ Sauvegarde</h3>
+    <p style="margin-top:0">${stateTxt}</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn" id="bJson">⬇︎ Exporter la sauvegarde complète (.json)</button>
-      <button class="btn ghost" id="bCsv">⬇︎ Exporter l'inventaire (.csv / Excel)</button>
-    </div></div>
-  <div class="panel"><h3>Restaurer une sauvegarde</h3>
-    <p style="margin-top:0;color:var(--muted)">Importe un fichier .json exporté depuis cette application. Vous pourrez choisir de remplacer la cave actuelle ou de fusionner.</p>
-    <label class="btn ghost" style="display:inline-block">⬆︎ Choisir un fichier de sauvegarde<input type="file" id="bImp" accept=".json,application/json" hidden></label>
+      <button class="btn" id="bSave" ${db.wines.length?"":"disabled style='opacity:.5'"}>⬆︎ Sauvegarder</button>
+      <button class="btn ghost" id="bImport">⬇︎ Importer une sauvegarde</button>
+    </div>
+    <details style="margin-top:14px;font-size:14px;color:var(--muted)"><summary style="cursor:pointer;font-weight:600;color:var(--text)">Comment ça marche ?</summary>
+      <p><b>Sauvegarder</b> : le menu Partager de l'iPad s'ouvre. Choisissez la destination :</p>
+      <ul style="margin:0 0 10px;padding-left:20px;line-height:1.6">
+        <li><b>kDrive</b> : touchez l'icône kDrive (faites défiler la rangée d'apps si besoin), puis un dossier, par exemple « Ma Cave ».</li>
+        <li><b>Sur l'iPad</b> : « Enregistrer dans Fichiers », puis « Sur mon iPad ».</li>
+        <li><b>iCloud Drive</b> : « Enregistrer dans Fichiers », puis iCloud Drive.</li>
+        <li><b>E-mail</b> : touchez Mail, le fichier est joint automatiquement.</li>
+        <li><b>AirDrop</b>, Messages… : vers un autre appareil.</li>
+      </ul>
+      <p><b>Importer</b> : dans la fenêtre qui s'ouvre, touchez <b>Parcourir</b>, puis l'emplacement (kDrive, Sur mon iPad, iCloud Drive…) et choisissez le fichier de sauvegarde le plus récent. Pour une sauvegarde reçue par e-mail : ouvrez la pièce jointe dans Mail, enregistrez-la dans Fichiers, puis importez-la.</p>
+      <p><b>kDrive n'apparaît pas ?</b> Installez l'app kDrive d'Infomaniak depuis l'App Store et connectez-vous. Ensuite, dans l'app Fichiers, onglet Parcourir, touchez <b>⋯</b> puis <b>Modifier</b>, et activez kDrive.</p>
+      <p>Chaque sauvegarde est un fichier daté (ma-cave-sauvegarde-AAAA-MM-JJ.json). Vous pouvez supprimer les anciennes quand vous voulez.</p>
+    </details>
+  </div>
+  <div class="panel"><h3>Rappel de sauvegarde</h3>
+    <p style="margin-top:0;color:var(--muted);font-size:14px">Un bandeau vous le rappelle en haut de la cave quand l'une des deux conditions est atteinte.</p>
+    <div class="form" style="grid-template-columns:1fr 1fr">
+      <div class="fl" style="grid-column:span 1"><label for="pDays">Me le rappeler</label><select id="pDays">${opt(3,prefs.days,"tous les 3 jours")}${opt(7,prefs.days,"chaque semaine")}${opt(14,prefs.days,"toutes les 2 semaines")}${opt(30,prefs.days,"chaque mois")}${opt(0,prefs.days,"jamais selon la durée")}</select></div>
+      <div class="fl" style="grid-column:span 1"><label for="pChg">ou après</label><select id="pChg">${opt(5,prefs.changes,"5 modifications")}${opt(10,prefs.changes,"10 modifications")}${opt(25,prefs.changes,"25 modifications")}${opt(50,prefs.changes,"50 modifications")}${opt(0,prefs.changes,"jamais selon le nombre")}</select></div>
+    </div>
+  </div>
+  <div class="panel"><h3>Exporter l'inventaire</h3>
+    <p style="margin-top:0;color:var(--muted);font-size:14px">Un tableau lisible dans Excel ou Numbers. Il sert à consulter ou imprimer la cave, pas à la restaurer.</p>
+    <button class="btn ghost" id="bCsv">⬇︎ Exporter l'inventaire (.csv)</button>
   </div>
   <div class="panel"><h3>Zone sensible</h3>
     <button class="btn danger" id="bReset">Vider entièrement la cave</button>
   </div>
   <p style="color:var(--muted);font-size:12px;text-align:center">Ma Cave · version ${APP_VERSION} · ${isStandalone()?"application installée":"ouverte dans le navigateur"}${navigator.serviceWorker&&navigator.serviceWorker.controller?" · disponible hors ligne":""}</p>`;
-  $("#bJson").onclick = ()=>download(`ma-cave-${stamp()}.json`, JSON.stringify({app:"ma-cave",version:1,...db}, null, 1), "application/json");
+  $("#bSave").onclick = backupNow;
+  $("#bImport").onclick = pickBackup;
+  $("#pDays").onchange = e=>{ prefs.days = +e.target.value; lsSet(PREFS, prefs); renderSave(); renderHeader(); };
+  $("#pChg").onchange = e=>{ prefs.changes = +e.target.value; lsSet(PREFS, prefs); renderSave(); renderHeader(); };
   $("#bCsv").onclick = ()=>{
     const cols = [["nom","Nom"],["domaine","Domaine"],["appellation","Appellation"],["region","Région"],["pays","Pays"],["couleur","Couleur"],["millesime","Millésime"],["cepages","Cépages"],["contenance","Contenance"],["degre","Degré"],["quantite","Quantité"],["emplacement","Emplacement"],["prix","Prix"],["fournisseur","Fournisseur"],["dateAchat","Date d'achat"],["boireDe","Boire dès"],["boireA","Boire jusqu'à"],["note","Note"],["commentaire","Commentaire"]];
     const cell = v => `"${String(v??"").replace(/"/g,'""')}"`;
-    const csv = "\ufeff"+[cols.map(c=>cell(c[1])).join(";"), ...db.wines.map(w=>cols.map(c=>cell(c[0]==="couleur"?colOf(w.couleur).l:w[c[0]])).join(";"))].join("\r\n");
+    const csv = "﻿"+[cols.map(c=>cell(c[1])).join(";"), ...db.wines.map(w=>cols.map(c=>cell(c[0]==="couleur"?colOf(w.couleur).l:w[c[0]])).join(";"))].join("\r\n");
     download(`ma-cave-inventaire-${stamp()}.csv`, csv, "text/csv;charset=utf-8");
   };
-  $("#bImp").onchange = e=>{
-    const file = e.target.files[0]; if(!file) return;
-    const r = new FileReader();
-    r.onload = ()=>{
-      try{
-        const d = JSON.parse(r.result);
-        if(!Array.isArray(d.wines)) throw new Error("format");
-        const replace = db.wines.length ? confirm(`Fichier valide : ${d.wines.length} vin(s).\n\nOK = REMPLACER la cave actuelle\nAnnuler = FUSIONNER (ajouter les vins absents)`) : true;
-        if(replace){ db.wines = d.wines; db.log = d.log||[]; }
-        else { const ids = new Set(db.wines.map(w=>w.id)); d.wines.forEach(w=>{ if(!ids.has(w.id)) db.wines.push(w); }); const lids=new Set(db.log.map(l=>l.id)); (d.log||[]).forEach(l=>{ if(!lids.has(l.id)) db.log.push(l); }); db.log.sort((a,b)=>b.date.localeCompare(a.date)); }
-        save(); renderHeader(); renderSave(); toast("Sauvegarde importée");
-      }catch(err){ toast("Fichier invalide : ce n'est pas une sauvegarde de Ma Cave"); }
-    };
-    r.readAsText(file);
-  };
   $("#bReset").onclick = ()=>{
-    if(!confirm("Vider toute la cave et le journal ? Pensez à exporter une sauvegarde avant.")) return;
+    if(!confirm("Vider toute la cave et le journal ? Pensez à faire une sauvegarde avant.")) return;
     if(!confirm("Confirmez-vous la suppression définitive de toutes les données ?")) return;
-    db = {wines:[], log:[], savedAt:null}; save(); renderHeader(); renderSave(); toast("Cave vidée");
+    db = {wines:[], log:[], savedAt:null}; save(); backup = {at:backup.at, changes:0, since:null}; lsSet(BK, backup); renderHeader(); renderSave(); toast("Cave vidée");
   };
 }
 
