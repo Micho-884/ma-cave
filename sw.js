@@ -2,7 +2,7 @@
    Garde l'application en mémoire sur l'iPad pour qu'elle s'ouvre sans internet.
    Quand une nouvelle version est mise en ligne, elle est téléchargée en arrière-plan
    et utilisée au lancement suivant. Les données de la cave ne passent jamais par ici. */
-const VERSION = "ma-cave-1.1.2";
+const VERSION = "ma-cave-1.2.0";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", event => {

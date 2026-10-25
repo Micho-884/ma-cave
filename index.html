@@ -186,6 +186,103 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
   .two{grid-template-columns:1fr}.grid{grid-template-columns:1fr}
   .kv{grid-template-columns:110px 1fr}
 }
+/* ---------- Plan de la cave ---------- */
+.ptools{display:flex;flex-wrap:wrap;align-items:center;margin:-4px 0 12px}
+.ptools > *{margin:4px 10px 4px 0}
+.ptools .seg small{font-weight:400;color:var(--muted);font-size:11px;margin-left:2px}
+.plg{font-size:12px;color:var(--muted);margin-left:auto}
+.plg > span{display:inline-flex;align-items:center;margin-left:12px}
+.plg .dot{margin-right:5px}
+.pmbar{display:flex;align-items:center;justify-content:space-between;background:#1f3b6e;color:#fff;border-radius:12px;padding:8px 8px 8px 16px;margin-bottom:12px;font-weight:600}
+.pmbar .btn{min-height:38px;padding:6px 14px}
+.pwrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-gap:14px;align-items:start}
+.pside{position:-webkit-sticky;position:sticky;top:130px;margin:0;max-height:calc(100vh - 150px);overflow:auto;-webkit-overflow-scrolling:touch}
+.pside h3{margin:0 0 6px}
+.pside .m,.pmain .m{color:var(--muted);font-size:13px}
+.pside p{margin:6px 0 10px}
+.pz{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:var(--shadow)}
+.pzh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;font-size:14px;margin-bottom:6px}
+.pzh b{margin-right:6px}
+.pzh span{color:var(--muted);font-size:12px}
+.wing3{display:grid;grid-template-columns:1fr .62fr 1fr;grid-gap:10px}
+.rr{display:grid;grid-template-columns:16px repeat(6,1fr);grid-gap:5px;align-items:center;margin-bottom:5px}
+.rr.r8{grid-template-columns:16px repeat(8,1fr)}
+.rr.hd{margin-bottom:3px}
+.rn,.cl{font-size:10px;color:var(--muted);text-align:center}
+.psep{border-top:5px solid #8a6a4f;border-radius:3px;margin:7px 0 9px}
+.sl{display:block;width:100%;height:0;padding-bottom:100%;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--axis);cursor:pointer;position:relative}
+.sl[style*="background"]{box-shadow:inset 0 0 0 2px rgba(0,0,0,.2)}
+.sl.on,.mgp.on,.psl.on,.mgc.on,.bin.on,.niche.on{box-shadow:0 0 0 2px var(--surface),0 0 0 5px var(--accent)!important}
+.sl.hit,.psl.hit i,.mgp.hit i,.bin.hit,.mgc.hit{box-shadow:0 0 0 2px var(--surface),0 0 0 5px #1f6feb!important}
+.sl.dim,.psl.dim,.mgp.dim,.bin.dim,.mgc.dim{opacity:.2}
+.sl.fr{background:rgba(31,111,235,.12);box-shadow:inset 0 0 0 2px rgba(31,111,235,.6)}
+.mz .mgl{display:flex;align-items:center;border-bottom:5px solid #8a6a4f;padding:6px 0;min-height:44px}
+.lvbtn{cursor:pointer;width:18px;flex:none;border-radius:4px}
+.lvbtn:active{background:var(--surface2)}
+.mgp{flex:1;display:flex;align-items:center;cursor:pointer;padding:2px 2px;border-radius:8px;min-width:0}
+.mgp i{flex:1;height:18px;border-radius:10px 4px 4px 10px;box-shadow:inset 0 0 0 1.5px var(--axis);display:block}
+.mgp em{width:10px;height:7px;flex:none;border-radius:0 2px 2px 0;box-shadow:inset 0 0 0 1.5px var(--axis);display:block}
+.mgp.r{flex-direction:row-reverse}.mgp.r i{border-radius:4px 10px 10px 4px}.mgp.r em{border-radius:2px 0 0 2px}
+.mgp.fr i,.mgp.fr em{background:rgba(31,111,235,.12);box-shadow:inset 0 0 0 1.5px rgba(31,111,235,.6)}
+.mgc{flex:1;margin-left:4px;background:#e9d6b4;color:#4a3524;border-radius:6px;font:600 11px Georgia,serif;text-align:center;padding:4px;line-height:1.2;cursor:pointer}
+.mgc small{display:block;font:400 9px -apple-system,sans-serif;color:#6b5440}
+.mgc.fr{background:rgba(31,111,235,.12);color:var(--text)}
+.pres2{margin-top:10px}
+.prow{display:grid;grid-template-columns:repeat(17,1fr);grid-gap:4px}
+.prow .gap{margin-left:6px}
+.psl{border:1.5px solid var(--axis);border-radius:7px;height:62px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:5px 0;cursor:pointer}
+.psl i{width:12px;height:34px;border-radius:5px 5px 2px 2px;box-shadow:inset 0 0 0 1.5px var(--axis);display:block}
+.psl small{font-size:9px;color:var(--muted)}
+.psl.fr{background:rgba(31,111,235,.10);border-color:rgba(31,111,235,.6)}
+.arch2{display:grid;grid-template-columns:1.2fr 1fr;grid-gap:12px;align-items:start}
+.niche{cursor:pointer;min-height:180px;background-image:repeating-linear-gradient(45deg,transparent 0 10px,rgba(0,0,0,.025) 10px 20px)}
+.niche .arch-i{text-align:center;opacity:.5;letter-spacing:4px;margin:6px 0 10px}
+.niche .nr{display:flex;align-items:center;font-size:13px;padding:5px 0;border-top:1px solid var(--line)}
+.niche .nr .dot{margin-right:8px}.niche .nr b{margin-left:auto}
+.low3{display:grid;grid-template-columns:1fr .36fr 1fr;grid-gap:12px}
+.bins{display:grid;grid-gap:6px}
+.bin{border:1.5px dashed var(--axis);border-radius:9px;height:66px;padding:5px 7px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;position:relative;overflow:hidden}
+.bin b{font-size:12px}
+.bin.caisse{border-style:solid;background:rgba(138,106,79,.07)}
+.bin.fr{background:rgba(31,111,235,.10);border-color:rgba(31,111,235,.6)}
+.bbar{display:flex;height:9px;border-radius:5px;overflow:hidden;background:var(--grid)}
+.bbar i{display:block;height:100%}.bbar i.em{background:transparent}
+.bn{font-size:11px;color:var(--muted);text-align:right}
+.bw{font:600 11px Georgia,serif;padding-left:5px;line-height:1.15;overflow:hidden;max-height:26px}
+.bv{font-size:11px;color:var(--muted)}
+.lgz2{font-size:12px;color:var(--muted);margin-top:10px}
+.lgz2 > span{display:inline-flex;align-items:center;margin-right:18px}
+.ld2,.lc2{width:20px;height:12px;border-radius:3px;display:inline-block;margin-right:6px}
+.ld2{border:1.5px dashed var(--axis)}.lc2{background:#e9d6b4}
+.ov3{display:grid;grid-template-columns:1fr .38fr 1fr;grid-gap:10px;margin-bottom:10px}
+.ovb{background:var(--surface2);border-radius:14px;padding:8px;cursor:pointer;overflow:hidden}
+.ovb:active{outline:3px solid var(--accent)}
+.ovt{font:600 14px Georgia,serif;margin:0 0 6px 4px}
+.ovz{zoom:.5;pointer-events:none}
+.sec-tout .arch2{grid-template-columns:1fr}
+.pw{display:flex;align-items:flex-start;margin:6px 0 10px}
+.pw .dot{margin-right:10px}
+.pwn{font:600 17px Georgia,serif}
+.bdg{margin-top:6px}.bdg .badge{display:inline-block;margin:0 4px 4px 0}
+.acts{display:grid;grid-template-columns:1fr 1fr;grid-gap:8px;margin-top:10px}
+.acts .btn{min-height:42px;padding:8px 10px;font-size:14px}
+.wfull{width:100%;margin-top:8px}
+.seg.wfull2{display:flex;width:100%;margin:6px 0}.seg.wfull2 button{flex:1;font-size:13px;padding:8px 6px}
+.seg button[disabled]{opacity:.45}
+.ph{font-weight:600;font-size:13px;margin:12px 0 6px}
+.pick{display:flex;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 10px;margin-bottom:6px;font-size:14px;cursor:pointer;min-height:44px}
+.pick .dot{margin-right:8px}.pick .pk{flex:1;min-width:0}.pick b{background:var(--surface2);border-radius:7px;padding:2px 8px;font-size:13px}
+.row2{display:flex;align-items:center}.row2 > *{margin-right:6px}
+.pr2{display:flex;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.pr2 .dot{margin-right:10px}
+.pr2 .qty button{width:34px;height:34px;font-size:18px}.pr2 .qty b{min-width:24px;font-size:16px}
+.mini{border:1px solid var(--line);background:var(--surface2);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;cursor:pointer;min-height:32px}
+.mini.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.capbar{height:10px;background:var(--grid);border-radius:5px;overflow:hidden;margin:4px 0 8px}
+.capbar i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.prog{background:rgba(31,111,235,.1);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:15px}
+@media (max-width:1050px){ .pwrap{grid-template-columns:1fr} .pside{position:static;max-height:none} }
+@media (max-width:700px){ .wing3{grid-template-columns:1fr} .low3,.ov3,.arch2{grid-template-columns:1fr} .prow{grid-template-columns:repeat(9,1fr)} .prow .gap{margin-left:0} }
 </style>
 </head>
 <body>
@@ -220,7 +317,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
     if(!b){ b=document.createElement("div"); b.id="errbox";
       b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:999;background:#a3281f;color:#fff;padding:14px 16px;border-radius:12px;font:14px/1.45 -apple-system,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.3)";
       document.body.appendChild(b); }
-    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.1.2</span>";
+    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.2.0</span>";
   }
   window.__caveShowError=show;
   window.addEventListener("error",function(e){ show((e.message||"Erreur")+(e.lineno?" (ligne "+e.lineno+")":"")); });
@@ -231,7 +328,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
 <script>
 "use strict";
 const KEY = "ma-cave-v1";
-const APP_VERSION = "1.1.2";
+const APP_VERSION = "1.2.0";
 const isStandalone = () => window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
 const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
 function showInstallHint(){ if(isStandalone() || !isIOS() || !location.protocol.startsWith("http")) return false; try{ return !localStorage.getItem(KEY+"-hint"); }catch(e){ return true; } }
@@ -244,12 +341,13 @@ const YEAR = () => new Date().getFullYear();
 
 let storageOK = true;
 let db = {wines:[], log:[], savedAt:null};
-let ui = {view:"cave", q:"", colors:new Set(), region:"", status:"", sort:"nom", showEmpty:false, facet:null, dm:"btl", dc:"", dwTab:"btl"};
+let ui = {view:"cave", q:"", colors:new Set(), region:"", status:"", sort:"nom", showEmpty:false, facet:null, dm:"btl", dc:"", dwTab:"btl",
+  cv:(function(){ try{ return localStorage.getItem("ma-cave-v1-view")||"cartes"; }catch(e){ return "cartes"; } })(), ps:"gauche", pcol:"couleur", sel:null, pm:null, selLvl:false, csize:6};
 
 function load(){
   try{
     const raw = localStorage.getItem(KEY);
-    if(raw){ const d = JSON.parse(raw); db.wines = d.wines||[]; db.log = d.log||[]; db.savedAt = d.savedAt||null; }
+    if(raw){ const d = JSON.parse(raw); db.wines = d.wines||[]; db.log = d.log||[]; db.savedAt = d.savedAt||null; db.stock = d.stock||{}; db.cfg = d.cfg||null; }
     localStorage.setItem(KEY+"-test","1"); localStorage.removeItem(KEY+"-test");
   }catch(e){ storageOK = false; }
 }
@@ -293,6 +391,7 @@ function filtered(){
     if(ui.status){ const s=status(w).k; if(ui.status==="boire" ? !(s==="boire"||s==="vite"||s==="passe") : s!==ui.status) return false; }
     if(ui.facet){ const {k,v} = ui.facet;
       if(k==="cepage"){ if(!(w.cepages||"").split(",").map(s=>s.trim()).includes(v)) return false; }
+      else if(k==="zone"){ if(v==="Non rangées" ? !unplacedOf(w) : zonesOf(w).indexOf(v)<0) return false; }
       else if(String(w[k]||"").trim()!==v) return false; }
     if(q){ const hay=[w.nom,w.domaine,w.appellation,w.region,w.pays,w.cepages,w.millesime,w.emplacement,w.commentaire].join(" ").toLowerCase(); if(!hay.includes(q)) return false; }
     return true;
@@ -312,6 +411,7 @@ function filtered(){
 }
 
 function renderCave(){
+  if(ui.cv==="plan") return renderPlan();
   const regions = [...new Set(db.wines.map(w=>w.region).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"fr"));
   if(ui.region && !regions.includes(ui.region)) ui.region="";
   const list = filtered();
@@ -320,8 +420,8 @@ function renderCave(){
   h += backupBanner();
   if(showInstallHint()) h += `<div class="install"><img src="apple-touch-icon.png" width="40" height="40" style="border-radius:9px" alt=""><div><b>Installez Ma Cave sur l'écran d'accueil</b><br>Touchez <b>Partager</b> <span aria-hidden="true">⬆︎</span> dans Safari, puis <b>« Sur l'écran d'accueil »</b>. Elle fonctionnera ensuite sans internet.</div><button class="btn ghost x" id="instX">OK</button></div>`;
   if(!storageOK) h += `<div class="warnbox">⚠️ Ce navigateur ne permet pas d'enregistrer les données. Utilisez « Sauvegarde » pour exporter régulièrement votre cave.</div>`;
-  h += `<div class="toolbar">
-    <input class="search" id="q" type="search" placeholder="Rechercher : nom, domaine, appellation, cépage, emplacement…" value="${esc(ui.q)}">
+  h += `<div class="toolbar">${viewSeg()}
+    <input class="search" id="q" type="search" placeholder="Rechercher : nom, domaine, appellation, cépage…" value="${esc(ui.q)}">
     <select class="f" id="fRegion"><option value="">Toutes les régions</option>${regions.map(r=>`<option ${r===ui.region?"selected":""}>${esc(r)}</option>`).join("")}</select>
     <select class="f" id="fStatus">
       <option value="">Toutes maturités</option>
@@ -348,6 +448,7 @@ function renderCave(){
   }
   $("#main").innerHTML = h;
 
+  bindViewSeg();
   const q = $("#q");
   if(q){ q.oninput = e=>{ ui.q=e.target.value; const pos=e.target.selectionStart; renderCave(); const nq=$("#q"); nq.focus(); try{nq.setSelectionRange(pos,pos);}catch(_){} }; }
   $("#fRegion") && ($("#fRegion").onchange = e=>{ui.region=e.target.value;renderCave();});
@@ -375,7 +476,7 @@ function cardHTML(w){
       <p class="name">${esc(w.nom||"Sans nom")} ${w.millesime?`<span style="color:var(--muted);font-weight:400">${esc(w.millesime)}</span>`:""}</p>
       <div class="sub">${esc(sub)}</div>
       <div class="meta">
-        ${w.emplacement?`<span class="badge">📍 ${esc(w.emplacement)}</span>`:""}
+        ${placeSummary(w)?`<span class="badge">📍 ${esc(placeSummary(w))}</span>`:""}
         ${st.l?`<span class="badge ${st.cls}">${st.l}</span>`:""}
         ${+w.note?`<span class="badge">${"★".repeat(+w.note)}</span>`:""}
       </div>
@@ -388,19 +489,24 @@ function cardHTML(w){
   </div>`;
 }
 
-function adjust(id, delta, motif, note){
+function adjust(id, delta, motif, note, fromAddr){
   const w = db.wines.find(x=>x.id===id); if(!w) return;
   const before = +w.quantite||0, after = Math.max(0, before+delta);
   if(after===before) return;
+  if(delta<0 && fromAddr) removeAt(fromAddr, w.id, -delta);
   w.quantite = after;
+  trimPlacements(w);
   db.log.unshift({id:uid(), wineId:w.id, nom:w.nom, millesime:w.millesime, date:new Date().toISOString(), delta:after-before, motif, note:note||""});
   save(); renderHeader(); render();
   toast((after-before>0?"+":"")+(after-before)+" · "+(w.nom||"Vin")+" → "+after+" en cave");
 }
 
 /* Consumption dialog */
-function consume(id){
+function consume(id, fromAddr){
   const w = db.wines.find(x=>x.id===id); if(!w) return;
+  const ps = placesOf(w.id), un = unplacedOf(w);
+  const opts = (un ? `<option value="">Bouteilles non rangées (${un})</option>` : "") + ps.map(p=>`<option value="${p.a}" ${p.a===fromAddr?"selected":""}>${addrLabel(p.a)}${p.n>1?" ("+p.n+")":""}</option>`).join("");
+  const fromSel = ps.length ? `<div class="fl s6"><label>Retirer de</label><select id="cF">${opts}</select></div>` : "";
   $("#modal").innerHTML = `
     <div class="mh"><h2>Sortir une bouteille</h2><button class="btn ghost" data-close>Fermer</button></div>
     <div class="mb">
@@ -409,13 +515,15 @@ function consume(id){
         <div class="fl s2"><label>Nombre</label><input id="cN" type="number" min="1" max="${+w.quantite}" value="1" inputmode="numeric"></div>
         <div class="fl s2"><label>Motif</label><select id="cM"><option>Dégustée</option><option>Offerte</option><option>Vendue</option><option>Cassée / bouchonnée</option><option>Autre</option></select></div>
         <div class="fl s2"><label>Occasion / note (facultatif)</label><input id="cT" placeholder="Dîner du 12, avec…"></div>
+        ${fromSel}
       </div>
     </div>
     <div class="mf"><button class="btn ghost" data-close>Annuler</button><button class="btn" id="cOk">Valider</button></div>`;
   openModal();
   $("#cOk").onclick = ()=>{
     const n = Math.max(1, Math.min(+w.quantite, parseInt($("#cN").value)||1));
-    closeModal(); adjust(id, -n, $("#cM").value, $("#cT").value.trim());
+    const from = $("#cF") ? $("#cF").value : "";
+    closeModal(); adjust(id, -n, $("#cM").value, $("#cT").value.trim(), from||null);
   };
 }
 
@@ -427,7 +535,9 @@ function openDetail(id){
     ["Couleur", `<span class="dot" style="background:${c.c};vertical-align:-1px"></span> ${c.l}`],
     ["Domaine", esc(w.domaine)],["Appellation", esc(w.appellation)],["Région", esc([w.region,w.pays].filter(Boolean).join(", "))],
     ["Millésime", esc(w.millesime)],["Cépages", esc(w.cepages)],["Contenance", esc(w.contenance)],["Degré", w.degre?esc(w.degre)+" % vol":""],
-    ["Quantité", `<b>${+w.quantite||0}</b> bouteille(s)`],["Emplacement", esc(w.emplacement)],
+    ["Quantité", `<b>${+w.quantite||0}</b> bouteille(s)`],
+    ["Rangement", placesOf(w.id).length||unplacedOf(w) ? placesOf(w.id).map(p=>`<span class="badge">${addrLabel(p.a)}${p.n>1?" ×"+p.n:""}</span>`).join(" ")+(unplacedOf(w)?` <span class="badge b-warn">${unplacedOf(w)} non rangée${unplacedOf(w)>1?"s":""}</span>`:"") : ""],
+    ["Note d'emplacement", esc(w.emplacement)],
     ["Prix d'achat", w.prix?money(w.prix)+" / btl":""],["Achat", esc([w.fournisseur, w.dateAchat?fmtDate(w.dateAchat):""].filter(Boolean).join(" · "))],
     ["Garde", (w.boireDe||w.boireA)?`${esc(w.boireDe||"?")} – ${esc(w.boireA||"?")} ${st.l?`<span class="badge ${st.cls}">${st.l}</span>`:""}`:""],
     ["Note", +w.note?"★".repeat(+w.note)+"☆".repeat(5-w.note):""],
@@ -448,15 +558,17 @@ function openDetail(id){
       <button class="btn danger" id="dDel">Supprimer</button><span class="sp"></span>
       <button class="btn ghost" id="dDup">Dupliquer</button>
       <button class="btn ghost" id="dEdit">Modifier</button>
+      ${unplacedOf(w)?`<button class="btn ghost" id="dPlace">📍 Ranger (${unplacedOf(w)})</button>`:""}
       ${+w.quantite?`<button class="btn" id="dOut">Sortir une bouteille</button>`:""}
     </div>`;
   openModal();
   $("#dEdit").onclick = ()=>openForm(w.id);
   $("#dDup").onclick = ()=>openForm(null, w);
   $("#dOut") && ($("#dOut").onclick = ()=>consume(w.id));
+  $("#dPlace") && ($("#dPlace").onclick = ()=>startPlacing(w.id));
   $("#dDel").onclick = ()=>{
     if(!confirm("Supprimer définitivement « "+(w.nom||"ce vin")+" » de la cave ?")) return;
-    db.wines = db.wines.filter(x=>x.id!==w.id); save(); closeModal(); renderHeader(); render(); toast("Vin supprimé");
+    removeWineStock(w.id); db.wines = db.wines.filter(x=>x.id!==w.id); if(ui.pm&&ui.pm.w===w.id) ui.pm=null; save(); closeModal(); renderHeader(); render(); toast("Vin supprimé");
   };
 }
 
@@ -687,7 +799,7 @@ function openForm(id, copyFrom, opts={}){
       ${f("cepages","Cépages","s6","text",'list="dl-cep"')}
       <div class="sec">En cave</div>
       ${f("quantite","Quantité","s2","number",'min="0" inputmode="numeric"')}
-      ${f("emplacement","Emplacement","s2","text",'list="dl-emp" placeholder="Ex. Casier B, rangée 3"')}
+      ${f("emplacement","Note d'emplacement","s2","text",'list="dl-emp" placeholder="Facultatif, ex. carton du garage"')}
       ${f("prix","Prix d'achat / btl","s2","number",'step="0.01" inputmode="decimal"')}
       ${f("fournisseur","Fournisseur","","text",'list="dl-four"')}
       ${f("dateAchat","Date d'achat","","date")}
@@ -762,7 +874,7 @@ function openForm(id, copyFrom, opts={}){
       boireDe:g("boireDe"), boireA:g("boireA"), note, commentaire:$("#f_commentaire").value.trim(), photo};
     if(editing){
       const diff = data.quantite - (+editing.quantite||0);
-      Object.assign(editing, data);
+      Object.assign(editing, data); trimPlacements(editing);
       if(diff) db.log.unshift({id:uid(), wineId:editing.id, nom:data.nom, millesime:data.millesime, date:new Date().toISOString(), delta:diff, motif:"Correction d'inventaire", note:""});
       toast("Modifications enregistrées");
     } else {
@@ -770,6 +882,9 @@ function openForm(id, copyFrom, opts={}){
       db.wines.push(nw);
       if(nw.quantite) db.log.unshift({id:uid(), wineId:nw.id, nom:nw.nom, millesime:nw.millesime, date:new Date().toISOString(), delta:nw.quantite, motif:"Entrée en cave", note:""});
       toast("Vin ajouté à la cave");
+      if(nw.quantite && opts.placeAt){ placeAt(opts.placeAt, nw.id, addrInfo(opts.placeAt).kind==="exact" ? 1 : nw.quantite, {size:6}); ui.sel = opts.placeAt;
+        if(unplacedOf(nw)>0 && addrInfo(opts.placeAt).kind==="exact"){ ui.pm = {kind:"place", w:nw.id}; ui.sel = null; } }
+      else if(nw.quantite){ save(); closeModal(); renderHeader(); render(); return askPlace(nw); }
     }
     save(); closeModal(); renderHeader(); render();
   };
@@ -812,7 +927,13 @@ const STATUS_DEF = [
   {k:"garder", l:"À garder", c:"var(--slate)", i:"⏳"},
   {k:"", l:"Garde non renseignée", c:"var(--none)", i:"–"}
 ];
-const FACET_LABEL = {pays:"Pays", region:"Région", appellation:"Appellation", cepage:"Cépage", millesime:"Millésime", emplacement:"Emplacement"};
+const FACET_LABEL = {pays:"Pays", region:"Région", appellation:"Appellation", cepage:"Cépage", millesime:"Millésime", emplacement:"Emplacement", zone:"Zone"};
+function zoneEntries(list){
+  const ids = {}; list.forEach(w=>ids[w.id]=w); const m = {};
+  Object.keys(db.stock).forEach(a=>stockAt(a).forEach(e=>{ const w = ids[e.w]; if(!w) return; const z = addrInfo(a).zone; m[z] = (m[z]||0) + e.n*(isVal()?(+w.prix||0):1); }));
+  list.forEach(w=>{ const u = unplacedOf(w); if(u) m["Non rangées"] = (m["Non rangées"]||0) + u*(isVal()?(+w.prix||0):1); });
+  return Object.keys(m).map(k=>[k,m[k]]).filter(e=>e[1]>0).sort((a,b)=>b[1]-a[1]);
+}
 const fmtN = n => Math.round(n).toLocaleString("fr-CH");
 const isVal = () => ui.dm==="val";
 const metricOf = w => isVal() ? (+w.quantite||0)*(+w.prix||0) : (+w.quantite||0);
@@ -978,6 +1099,7 @@ function renderStats(){
     <div class="kpi"><div class="v">${avgAge===null?"—":avgAge.toFixed(1).replace(".",",")+" ans"}</div><div class="l">âge moyen des bouteilles</div><small>${years.length?`millésimes ${years[0]} à ${years[years.length-1]}`:"millésimes non renseignés"}</small></div>
     <div class="kpi tap" data-status="boire"><div class="v">${fmtN(ready)}</div><div class="l">bouteilles prêtes à boire</div><small>${urgent?`dont ${urgent} à boire vite`:"aucune urgence"}</small></div>
     <div class="kpi"><div class="v">${fmtN(out12)}</div><div class="l">bouteilles sorties</div><small>sur les 12 derniers mois</small></div>
+    <div class="kpi tap" id="kFill"><div class="v">${Math.round(capacityInfo().used/Math.max(1,capacityInfo().cap)*100)} %</div><div class="l">remplissage de la cave</div><small>${Math.max(0,capacityInfo().cap-capacityInfo().used)} places libres</small></div>
   </div>
   <div class="dash">
     <div class="panel"><h3>Couleurs</h3><div class="sub">En ${unit}</div>${donut(list)}</div>
@@ -989,7 +1111,7 @@ function renderStats(){
     <div class="panel"><h3>Cépages</h3><div class="sub">En ${unit} · un assemblage compte pour chacun de ses cépages</div>${hbars(groupBy(list,w=>(w.cepages||"").split(",").map(s=>s.trim()).filter(Boolean)),"cepage",10)}</div>
     <div class="panel full"><h3>Calendrier de garde</h3><div class="sub">En ${unit}, selon l'année limite pour les boire${noEnd?` · ${fmtN(noEnd)} bouteille${noEnd>1?"s":""} sans date de garde`:""}</div>${colorLegend(colsGarde)}${columns("garde", colsGarde, {empty:"Renseignez « À boire jusqu'à » sur vos vins pour voir ce calendrier"})}</div>
     <div class="panel full"><h3>Vins</h3>${winesTable(list)}</div>
-    <div class="panel"><h3>Emplacements</h3><div class="sub">En ${unit}</div>${hbars(groupBy(list,w=>w.emplacement),"emplacement",10)}</div>
+    <div class="panel"><h3>Zones de la cave</h3><div class="sub">En ${unit} · ${capacityInfo().used} bouteilles rangées sur ${capacityInfo().cap} places</div>${hbars(zoneEntries(list),"zone",12)}</div>
     <div class="panel"><h3>Consommation</h3><div class="sub">Bouteilles sorties par mois, sur 12 mois</div>${colorLegend(colsOut)}${consHTML}</div>
   </div>`}`;
 
@@ -1000,6 +1122,7 @@ function renderStats(){
   document.querySelectorAll("[data-color]").forEach(r=>r.onclick=()=>goCave({colors:new Set([r.dataset.color])}));
   document.querySelectorAll("[data-status]").forEach(r=>r.onclick=()=>goCave({status:r.dataset.status}));
   document.querySelectorAll("[data-wt]").forEach(b=>b.onclick=()=>{ ui.dwTab=b.dataset.wt; renderStats(); });
+  $("#kFill") && ($("#kFill").onclick = ()=>{ ui.cv="plan"; ui.ps="tout"; ui.sel=null; setView("cave"); });
   document.querySelectorAll("[data-open]").forEach(r=>r.onclick=()=>openDetail(r.dataset.open));
   document.querySelectorAll(".col").forEach(c=>{
     const col = CH[c.dataset.ch][+c.dataset.ci];
@@ -1031,6 +1154,407 @@ window.addEventListener("scroll", ()=>{ if(Date.now()-tipAt>400 && Math.abs(scro
 function goCave(patch){
   Object.assign(ui, {q:"", region:"", status:"", facet:null, colors:new Set(ui.dc?[ui.dc]:[]), showEmpty:false}, patch);
   setView("cave");
+}
+
+/* ---------- Plan de cave : structure, stock, vue ---------- */
+/* Structure fixe de la cave (relevée sur les photos) :
+   Aile gauche : Casier 1 · Magnums E1 · Casier 2 · Présentoir P1–P17
+   Arche : 16 places au-dessus (A) · Niche N (vrac)
+   Aile droite : Casier 3 · Magnums E2 · Casier 4 · Présentoir P18–P34
+   Zone basse : bacs V1–V12 (gauche), V13–V15 (sous l'arche), V16–V27 (droite)
+   Adresses : « 3-4-E » casier-rangée-colonne, « A-1-3 », « E1-2-G » / « E1-2 » (caisse),
+   « P12 », « V7 », « N ». */
+const RCOLS = "ABCDEF";
+const BIN_ROWS = {gauche:[[1,2,3,4],[5,6,7,8],[9,10,11,12]], arche:[[13],[14],[15]], droite:[[16,17,18,19],[20,21,22,23],[24,25,26,27]]};
+const MAT_COLORS = {boire:"var(--ok)", vite:"var(--warn)", passe:"var(--bad)", garder:"var(--slate)", "":"var(--none)"};
+const DIAG_CAP = 12;
+
+function defaultCfg(){
+  const bin = {}, mag = {};
+  for(let i=1;i<=27;i++) bin["V"+i] = [9,10,11,12,15,24,25,26,27].indexOf(i)>=0 ? "caisse" : "diag";
+  for(let l=1;l<=6;l++){ mag["E1-"+l] = [2,3,4,6].indexOf(l)>=0 ? "caisse" : "2"; mag["E2-"+l] = "2"; }
+  return {bin:bin, mag:mag};
+}
+function ensurePlanData(){
+  if(!db.stock || typeof db.stock!=="object") db.stock = {};
+  if(!db.cfg || !db.cfg.bin || !db.cfg.mag){ const d = defaultCfg(); db.cfg = {bin:Object.assign(d.bin,(db.cfg&&db.cfg.bin)||{}), mag:Object.assign(d.mag,(db.cfg&&db.cfg.mag)||{})}; }
+  // nettoyage : vins supprimés, quantités dépassées
+  const ids = {}; db.wines.forEach(w=>ids[w.id]=w);
+  Object.keys(db.stock).forEach(a=>{
+    db.stock[a] = (db.stock[a]||[]).filter(e=>ids[e.w] && e.n>0);
+    if(!db.stock[a].length) delete db.stock[a];
+  });
+  db.wines.forEach(trimPlacements);
+}
+
+/* --- adresses --- */
+function addrInfo(a){
+  let m;
+  if((m = /^([1-4])-(\d+)-([A-F])$/.exec(a))) return {kind:"exact", zone:"Casier "+m[1], cap:1};
+  if((m = /^A-(\d)-(\d)$/.exec(a))) return {kind:"exact", zone:"Au-dessus de l'arche", cap:1};
+  if((m = /^(E[12])-(\d)(?:-([GD]))?$/.exec(a))) return {kind:"exact", zone:"Magnums "+m[1], cap:1, magnum:true, caisse:!m[3]};
+  if((m = /^P(\d+)$/.exec(a))) return {kind:"exact", zone:"Présentoir", cap:1};
+  if((m = /^V(\d+)$/.exec(a))){ const mode = db.cfg.bin[a]||"diag"; const e = stockAt(a)[0];
+    return {kind: mode==="caisse" ? "caisse" : "diag", zone:"Zone basse", cap: mode==="caisse" ? (e&&e.size ? e.size : 12) : DIAG_CAP}; }
+  if(a==="N") return {kind:"niche", zone:"Niche", cap:Infinity};
+  return {kind:"?", zone:"?", cap:0};
+}
+function addrLabel(a){
+  const i = addrInfo(a);
+  if(i.kind==="diag") return `Bac ${a} · diagonale`;
+  if(i.kind==="caisse") return `Bac ${a} · caisse`;
+  if(i.kind==="niche") return "Niche";
+  if(i.magnum && i.caisse) return `${a} · magnum en caisse`;
+  return a;
+}
+function allExact(){
+  const out = [];
+  for(let c=1;c<=4;c++) for(let r=1;r<=10;r++) for(let k=0;k<6;k++) out.push(`${c}-${r}-${RCOLS[k]}`);
+  for(let r=1;r<=2;r++) for(let c=1;c<=8;c++) out.push(`A-${r}-${c}`);
+  ["E1","E2"].forEach(e=>{ for(let l=1;l<=6;l++){ if(db.cfg.mag[`${e}-${l}`]==="caisse") out.push(`${e}-${l}`); else out.push(`${e}-${l}-G`, `${e}-${l}-D`); } });
+  for(let p=1;p<=34;p++) out.push("P"+p);
+  return out;
+}
+
+/* --- stock --- */
+const stockAt = a => db.stock[a] || [];
+const countAt = a => stockAt(a).reduce((s,e)=>s+e.n,0);
+const freeAt = a => { const i = addrInfo(a); return i.cap===Infinity ? Infinity : Math.max(0, i.cap - countAt(a)); };
+function placesOf(wid){ const out = []; Object.keys(db.stock).forEach(a=>stockAt(a).forEach(e=>{ if(e.w===wid) out.push({a:a, n:e.n}); })); return out.sort((x,y)=>x.a.localeCompare(y.a,"fr",{numeric:true})); }
+const placedOf = wid => placesOf(wid).reduce((s,p)=>s+p.n,0);
+const unplacedOf = w => Math.max(0, (+w.quantite||0) - placedOf(w.id));
+function addAt(a, wid, n, size){
+  const list = db.stock[a] || (db.stock[a] = []);
+  const e = list.find(x=>x.w===wid);
+  if(e) e.n += n; else list.push(size ? {w:wid, n:n, size:size} : {w:wid, n:n});
+}
+function removeAt(a, wid, n){
+  const list = db.stock[a]; if(!list) return 0;
+  const e = list.find(x=>x.w===wid); if(!e) return 0;
+  const k = Math.min(n, e.n); e.n -= k;
+  if(e.n<=0) db.stock[a] = list.filter(x=>x!==e);
+  if(!db.stock[a].length) delete db.stock[a];
+  return k;
+}
+// Retire les bouteilles rangées en trop si la quantité a baissé (d'abord les bacs et la niche, puis les places exactes).
+function trimPlacements(w){
+  let extra = placedOf(w.id) - (+w.quantite||0);
+  if(extra<=0) return;
+  const ps = placesOf(w.id).sort((x,y)=>{ const r = p => addrInfo(p.a).kind==="exact" ? 1 : 0; return r(x)-r(y) || y.a.localeCompare(x.a,"fr",{numeric:true}); });
+  for(const p of ps){ if(extra<=0) break; extra -= removeAt(p.a, w.id, extra); }
+}
+function removeWineStock(wid){ Object.keys(db.stock).forEach(a=>removeAt(a, wid, 1e9)); }
+function zonesOf(w){ const z = {}; placesOf(w.id).forEach(p=>z[addrInfo(p.a).zone]=1); return Object.keys(z); }
+function placeSummary(w){
+  const ps = placesOf(w.id), un = unplacedOf(w);
+  if(!ps.length) return w.emplacement ? w.emplacement : (un ? `${un} non rangée${un>1?"s":""}` : "");
+  const txt = ps.slice(0,3).map(p=>p.n>1 ? `${p.a}×${p.n}` : p.a).join(", ") + (ps.length>3 ? ` +${ps.length-3}` : "");
+  return txt + (un ? ` · ${un} non rangée${un>1?"s":""}` : "");
+}
+function capacityInfo(){
+  let cap = allExact().length, used = 0;
+  Object.keys(db.stock).forEach(a=>used += countAt(a));
+  for(let i=1;i<=27;i++) cap += addrInfo("V"+i).cap;
+  return {cap:cap, used:used};
+}
+// Ajoute des bouteilles à la cave (achat) sans passer par le rendu.
+function incQty(w, n, motif){
+  w.quantite = (+w.quantite||0) + n;
+  db.log.unshift({id:uid(), wineId:w.id, nom:w.nom, millesime:w.millesime, date:new Date().toISOString(), delta:n, motif:motif||"Ajout", note:""});
+}
+// Range n bouteilles d'un vin à une adresse ; augmente la quantité si toutes sont déjà rangées.
+function placeAt(a, wid, n, opts){
+  const w = db.wines.find(x=>x.id===wid); if(!w) return 0;
+  const info = addrInfo(a);
+  if(info.kind==="caisse" && stockAt(a).length && stockAt(a)[0].w!==wid){ toast("Ce bac contient déjà une autre caisse"); return 0; }
+  let k = Math.min(n, freeAt(a)); if(k<=0){ toast("Plus de place ici"); return 0; }
+  const un = unplacedOf(w);
+  if(un < k){ if(opts && opts.buy) incQty(w, k-un, "Ajout"); else k = un; }
+  if(k<=0) return 0;
+  addAt(a, wid, k, info.kind==="caisse" && !stockAt(a).length ? ((opts&&opts.size)||6) : 0);
+  return k;
+}
+
+/* --- état de l'interface --- */
+function planColor(w){ return ui.pcol==="mat" ? MAT_COLORS[status(w).k] : colOf(w.couleur).c; }
+function wineById(id){ return db.wines.find(w=>w.id===id); }
+function matchQ(w){
+  const q = (ui.q||"").trim().toLowerCase(); if(!q) return null;
+  return [w.nom,w.domaine,w.appellation,w.region,w.pays,w.cepages,w.millesime].join(" ").toLowerCase().indexOf(q)>=0;
+}
+function slotCls(a){
+  const e = stockAt(a)[0], cls = [];
+  if(ui.sel===a) cls.push("on");
+  if(ui.pm && !e) cls.push("fr");
+  if(e){ const m = matchQ(wineById(e.w)); if(m===true) cls.push("hit"); else if(m===false) cls.push("dim"); }
+  else if(ui.q && ui.q.trim()) cls.push("dim");
+  return cls.join(" ");
+}
+function slotStyle(a){ const e = stockAt(a)[0]; return e ? `background:${planColor(wineById(e.w))}` : ""; }
+
+/* --- rendu des zones --- */
+function rackHTML(c){
+  let n = 0, rows = "";
+  for(let r=1;r<=10;r++){
+    if(r===7) rows += `<div class="psep"></div>`;
+    rows += `<div class="rr"><span class="rn">${r}</span>` + RCOLS.split("").map(k=>{ const a = `${c}-${r}-${k}`; n += countAt(a); return `<span class="sl ${slotCls(a)}" data-a="${a}" style="${slotStyle(a)}"></span>`; }).join("") + `</div>`;
+  }
+  return `<div class="pz"><div class="pzh"><b>Casier ${c}</b><span>${n}/60</span></div>
+    <div class="rr hd"><span class="rn"></span>${RCOLS.split("").map(k=>`<span class="cl">${k}</span>`).join("")}</div>${rows}</div>`;
+}
+function magHTML(e){
+  let lv = "", n = 0, cap = 0;
+  for(let l=1;l<=6;l++){
+    const key = `${e}-${l}`, mode = db.cfg.mag[key];
+    let body;
+    if(mode==="caisse"){
+      const s = stockAt(key)[0], w = s && wineById(s.w); n += s ? 1 : 0; cap += 1;
+      body = `<span class="mgc ${slotCls(key)}" data-a="${key}">${w ? esc(w.nom)+(w.millesime?" "+w.millesime:"") : "caisse vide"}<small>1 magnum en caisse</small></span>`;
+    } else {
+      body = ["G","D"].map(s=>{ const a = `${key}-${s}`; n += countAt(a); cap += 1; return `<span class="mgp ${s==="D"?"r":""} ${slotCls(a)}" data-a="${a}"><i style="${slotStyle(a)}"></i><em style="${slotStyle(a)}"></em></span>`; }).join("");
+    }
+    lv += `<div class="mgl"><span class="rn lvbtn" data-lvl="${key}">${l}</span>${body}</div>`;
+  }
+  return `<div class="pz mz"><div class="pzh"><b>Magnums ${e}</b><span>${n}/${cap}</span></div>${lv}</div>`;
+}
+function presHTML(a0, a1){
+  let n = 0, h = "";
+  for(let p=a0;p<=a1;p++){ const a = "P"+p; n += countAt(a);
+    h += `<span class="psl ${slotCls(a)} ${(p-a0)===6||(p-a0)===11?"gap":""}" data-a="${a}"><i style="${slotStyle(a)}"></i><small>P${p}</small></span>`; }
+  return `<div class="pz pres2"><div class="pzh"><b>Présentoir</b><span>${n}/${a1-a0+1}</span></div><div class="prow">${h}</div></div>`;
+}
+function aboveHTML(){
+  let n = 0, rows = "";
+  for(let r=1;r<=2;r++) rows += `<div class="rr r8"><span class="rn">${r}</span>` + [1,2,3,4,5,6,7,8].map(c=>{ const a = `A-${r}-${c}`; n += countAt(a); return `<span class="sl ${slotCls(a)}" data-a="${a}" style="${slotStyle(a)}"></span>`; }).join("") + `</div>`;
+  return `<div class="pz"><div class="pzh"><b>Au-dessus de l'arche</b><span>${n}/16</span></div><div class="rr r8 hd"><span class="rn"></span>${[1,2,3,4,5,6,7,8].map(c=>`<span class="cl">${c}</span>`).join("")}</div>${rows}</div>`;
+}
+function binHTML(i){
+  const a = "V"+i, info = addrInfo(a), list = stockAt(a), n = countAt(a);
+  const cls = ["bin", info.kind, ui.sel===a?"on":"", ui.pm && freeAt(a)>0 ? "fr":""];
+  if(ui.q && ui.q.trim()){ cls.push(list.some(e=>matchQ(wineById(e.w))) ? "hit" : "dim"); }
+  let inner;
+  if(info.kind==="caisse"){
+    const w = list[0] && wineById(list[0].w);
+    inner = w ? `<span class="bw" style="border-left:4px solid ${planColor(w)}">${esc(w.nom)}${w.millesime?" "+w.millesime:""}</span><span class="bn">${n}/${info.cap}</span>` : `<span class="bv">caisse · vide</span>`;
+  } else {
+    const bar = list.map(e=>`<i style="flex:${e.n};background:${planColor(wineById(e.w))}"></i>`).join("") + (DIAG_CAP-n>0 ? `<i style="flex:${DIAG_CAP-n}" class="em"></i>` : "");
+    inner = `<span class="bbar">${bar}</span><span class="bn">${n}/${DIAG_CAP}</span>`;
+  }
+  return `<div class="${cls.join(" ")}" data-a="${a}"><b>${a}</b>${inner}</div>`;
+}
+function binsGroup(title, key){
+  const rows = BIN_ROWS[key];
+  return `<div class="pz"><div class="pzh"><b>${title}</b><span>${rows[0][0]===13?"V13 – V15":(key==="gauche"?"V1 – V12":"V16 – V27")}</span></div>
+    <div class="bins" style="grid-template-columns:repeat(${rows[0].length},1fr)">${rows.map(r=>r.map(binHTML).join("")).join("")}</div></div>`;
+}
+function nicheHTML(){
+  const list = stockAt("N"), n = countAt("N");
+  const items = list.map(e=>{ const w = wineById(e.w); return `<div class="nr"><span class="dot" style="background:${planColor(w)}"></span>${esc(w.nom)} ${w.millesime||""}<b>${e.n}</b></div>`; }).join("") || `<div class="m">Aucune bouteille en présentation</div>`;
+  return `<div class="pz niche ${ui.sel==="N"?"on":""}" data-a="N"><div class="pzh"><b>Niche</b><span>${n} btl</span></div><div class="arch-i">🍷 🍷 🍷</div>${items}</div>`;
+}
+function sectionHTML(s){
+  if(s==="gauche") return `<div class="wing3">${rackHTML(1)}${magHTML("E1")}${rackHTML(2)}</div>${presHTML(1,17)}`;
+  if(s==="droite") return `<div class="wing3">${rackHTML(3)}${magHTML("E2")}${rackHTML(4)}</div>${presHTML(18,34)}`;
+  if(s==="arche") return `<div class="arch2">${aboveHTML()}${nicheHTML()}</div>`;
+  if(s==="basse") return `<div class="low3">${binsGroup("Gauche","gauche")}${binsGroup("Arche","arche")}${binsGroup("Droite","droite")}</div>
+    <div class="lgz2"><span><i class="ld2"></i>Diagonale : bouteilles seules, 12 par bac</span><span><i class="lc2"></i>Caisse : une caisse entière d'un même vin</span></div>`;
+  // vue d'ensemble : toutes les sections en réduction, touchez-en une pour l'ouvrir
+  const box = (k, t, html) => `<div class="ovb" data-go="${k}"><div class="ovt">${t}</div><div class="ovz">${html}</div></div>`;
+  return `<div class="ov3">${box("gauche","Aile gauche",sectionHTML("gauche"))}${box("arche","Arche",sectionHTML("arche"))}${box("droite","Aile droite",sectionHTML("droite"))}</div>${box("basse","Zone basse",sectionHTML("basse"))}`;
+}
+function sectionCount(s){
+  const keys = Object.keys(db.stock).filter(a=>{
+    if(s==="gauche") return /^[12]-|^E1-|^P([1-9]|1[0-7])$/.test(a);
+    if(s==="droite") return /^[34]-|^E2-|^P(1[89]|2\d|3[0-4])$/.test(a);
+    if(s==="arche") return /^A-|^N$/.test(a);
+    if(s==="basse") return /^V/.test(a);
+    return true; });
+  return keys.reduce((t,a)=>t+countAt(a),0);
+}
+
+/* --- panneau latéral --- */
+function wineMini(w, extra){
+  const st = status(w);
+  return `<div class="pw"><span class="dot" style="background:${colOf(w.couleur).c};margin-top:6px"></span><div style="flex:1;min-width:0">
+    <div class="pwn">${esc(w.nom)} <span style="color:var(--muted);font-weight:400">${w.millesime||""}</span></div>
+    <div class="m">${esc([w.appellation,w.region].filter(Boolean).join(" · "))}${w.cepages?" · "+esc(w.cepages):""}</div>
+    <div class="bdg">${st.l?`<span class="badge ${st.cls}">${st.l}${w.boireA?" · "+(w.boireDe||"…")+"–"+w.boireA:""}</span>`:""}${+w.note?`<span class="badge">${"★".repeat(+w.note)}</span>`:""}<span class="badge">${+w.quantite} btl en cave</span>${+w.prix?`<span class="badge">${money(w.prix)} / btl</span>`:""}</div>
+    ${extra||""}</div></div>`;
+}
+function wineChooser(a){
+  const un = db.wines.filter(w=>unplacedOf(w)>0).sort((x,y)=>(x.nom||"").localeCompare(y.nom||"","fr"));
+  const list = un.map(w=>`<button class="pick" data-act="put" data-w="${w.id}"><span class="dot" style="background:${colOf(w.couleur).c}"></span><span class="pk">${esc(w.nom)} <span style="color:var(--muted)">${w.millesime||""}</span></span><b>${unplacedOf(w)}</b></button>`).join("");
+  const all = db.wines.slice().sort((x,y)=>(x.nom||"").localeCompare(y.nom||"","fr")).map(w=>`<option value="${w.id}">${esc(w.nom)} ${w.millesime||""}</option>`).join("");
+  return `${un.length?`<div class="ph">Bouteilles non rangées</div>${list}`:`<p class="m">Toutes les bouteilles sont rangées.</p>`}
+    ${db.wines.length?`<div class="ph">Ou un autre vin <span class="m">(ajoute une bouteille à la cave)</span></div><div class="row2"><select id="pAll" class="f" style="flex:1;min-width:0">${all}</select><button class="btn ghost" data-act="putsel">Ranger</button></div>`:""}
+    <button class="btn ghost wfull" data-act="newwine">＋ Nouveau vin</button>`;
+}
+function panelHTML(){
+  // mode rangement / déplacement
+  if(ui.pm){
+    const w = wineById(ui.pm.w);
+    if(!w){ ui.pm = null; return panelHTML(); }
+    if(ui.pm.kind==="move") return `<h3>Déplacer</h3>${wineMini(w)}<p>Touchez la nouvelle place (place libre en bleu, bac ou niche).</p><p class="m">Depuis : <b>${addrLabel(ui.pm.from)}</b></p><button class="btn ghost wfull" data-act="pmstop">Annuler</button>`;
+    const left = unplacedOf(w);
+    return `<h3>Ranger un vin</h3>${wineMini(w)}
+      <div class="prog"><b>${left}</b> bouteille${left>1?"s":""} à ranger</div>
+      <p class="m">Touchez les places libres (en bleu), un bac ou la niche. Vous pouvez changer de section en haut.</p>
+      <button class="btn wfull" data-act="auto">⚡ Placer automatiquement ici</button>
+      <button class="btn ghost wfull" data-act="pmstop">Terminer</button>`;
+  }
+  const a = ui.sel;
+  if(!a){
+    // résumé + recherche + non rangées
+    if(ui.q && ui.q.trim()){
+      const hits = db.wines.filter(w=>matchQ(w) && +w.quantite>0);
+      return `<h3>🔎 « ${esc(ui.q.trim())} »</h3><p class="m">${hits.length} vin${hits.length>1?"s":""} trouvé${hits.length>1?"s":""}</p>` +
+        hits.map(w=>`<div class="pr2"><span class="dot" style="background:${colOf(w.couleur).c}"></span><div style="flex:1;min-width:0"><b>${esc(w.nom)}</b> ${w.millesime||""}<div class="m">📍 ${esc(placeSummary(w)||"non rangé")}</div></div><button class="mini" data-act="open" data-w="${w.id}">Fiche</button></div>`).join("");
+    }
+    const ci = capacityInfo(), todo = db.wines.filter(w=>unplacedOf(w)>0);
+    return `<h3>Votre cave</h3><p class="m">${ci.used} bouteilles rangées · ${Math.max(0,ci.cap-ci.used)} places libres (sans la niche)</p>
+      <div class="capbar"><i style="width:${ci.cap?Math.min(100,ci.used/ci.cap*100):0}%"></i></div>
+      ${todo.length ? `<div class="ph">À ranger</div>` + todo.map(w=>`<div class="pr2"><span class="dot" style="background:${colOf(w.couleur).c}"></span><div style="flex:1;min-width:0"><b>${esc(w.nom)}</b> ${w.millesime||""}<div class="m">${unplacedOf(w)} bouteille${unplacedOf(w)>1?"s":""} non rangée${unplacedOf(w)>1?"s":""}</div></div><button class="mini on" data-act="startpm" data-w="${w.id}">Ranger</button></div>`).join("") : `<p class="m">✓ Toutes les bouteilles sont rangées.</p>`}
+      <p class="m" style="margin-top:14px">Touchez une place, un bac ou un niveau de magnums pour le détail.</p>`;
+  }
+  // niveau de magnums : réglage
+  if(/^E[12]-\d$/.test(a) && ui.selLvl){
+    const mode = db.cfg.mag[a], empty = !(stockAt(a).length || stockAt(a+"-G").length || stockAt(a+"-D").length);
+    return `<h3>Magnums ${a.split("-")[0]} · niveau ${a.split("-")[1]}</h3>
+      <div class="seg wfull2"><button class="${mode==="2"?"on":""}" data-act="magmode" data-v="2" ${empty?"":"disabled"}>2 magnums sans caisse</button><button class="${mode==="caisse"?"on":""}" data-act="magmode" data-v="caisse" ${empty?"":"disabled"}>1 magnum en caisse</button></div>
+      <p class="m">${empty?"Choisissez l'usage de ce niveau.":"Videz le niveau pour changer son réglage."}</p>`;
+  }
+  const info = addrInfo(a), list = stockAt(a);
+  // bacs
+  if(info.kind==="diag" || info.kind==="caisse" || info.kind==="niche"){
+    const n = countAt(a);
+    const modeSeg = info.kind==="niche" ? "" : `<div class="seg wfull2"><button class="${info.kind==="diag"?"on":""}" data-act="binmode" data-v="diag" ${n?"disabled":""}>Diagonale (12 btl)</button><button class="${info.kind==="caisse"?"on":""}" data-act="binmode" data-v="caisse" ${n?"disabled":""}>Caisse</button></div>${n?`<p class="m">Videz le bac pour changer son réglage.</p>`:""}`;
+    const rows = list.map(e=>{ const w = wineById(e.w);
+      return `<div class="pr2"><span class="dot" style="background:${colOf(w.couleur).c}"></span><div style="flex:1;min-width:0"><b>${esc(w.nom)}</b> ${w.millesime||""}<div class="m">${status(w).l||""}</div></div>
+        <span class="qty" style="padding:0"><button data-act="binout" data-w="${w.id}" aria-label="Sortir une bouteille">−</button><b>${e.n}</b><button data-act="binin" data-w="${w.id}" aria-label="Ranger une bouteille de plus" ${freeAt(a)>0?"":"disabled style='opacity:.35'"}>+</button></span></div>
+        <div class="row2" style="margin:-2px 0 8px 22px"><button class="mini" data-act="open" data-w="${w.id}">Fiche</button><button class="mini" data-act="move" data-w="${w.id}">Déplacer 1</button><button class="mini" data-act="unplace" data-w="${w.id}">Retirer du bac</button></div>`; }).join("");
+    const title = info.kind==="niche" ? "Niche" : `Bac ${a}`;
+    const sub = info.kind==="niche" ? `${n} bouteille${n>1?"s":""} en présentation` : info.kind==="caisse" ? (list.length ? `Caisse de ${info.cap} · ${n}/${info.cap}` : "Libre pour une caisse") : `Étagère diagonale · ${n}/${DIAG_CAP}`;
+    let add = "";
+    if(info.kind==="caisse" && !list.length) add = `<div class="ph">Taille de la caisse</div><div class="seg wfull2"><button class="${(ui.csize||6)===6?"on":""}" data-act="csize" data-v="6">6 bouteilles</button><button class="${ui.csize===12?"on":""}" data-act="csize" data-v="12">12 bouteilles</button></div>${wineChooser(a)}`;
+    else if(info.kind!=="caisse" && freeAt(a)>0) add = `<div class="ph" style="margin-top:12px">Ajouter un vin</div>${wineChooser(a)}`;
+    return `<h3>${title}</h3><p class="m">${sub}</p>${modeSeg}${rows}${add}`;
+  }
+  // place exacte
+  const e = list[0];
+  if(e){
+    const w = wineById(e.w);
+    return `<h3>${addrLabel(a)}</h3>${wineMini(w, `<div class="m" style="margin-top:6px">📍 ${esc(placeSummary(w))}</div>`)}
+      <div class="acts"><button class="btn" data-act="out" data-w="${w.id}">🍷 Sortir cette bouteille</button><button class="btn ghost" data-act="move" data-w="${w.id}">↔︎ Déplacer</button>
+      <button class="btn ghost" data-act="open" data-w="${w.id}">Voir la fiche</button><button class="btn ghost" data-act="unplace" data-w="${w.id}">Retirer de la place</button></div>`;
+  }
+  return `<h3>Place libre ${a}</h3><p class="m">${info.magnum?"Place pour un magnum (150 cl).":"Choisissez le vin à ranger ici."}</p>${wineChooser(a)}`;
+}
+
+/* --- vue Plan --- */
+function renderPlan(){
+  if(!ui.ps) ui.ps = "gauche";
+  const secs = [["gauche","Aile gauche"],["arche","Arche"],["droite","Aile droite"],["basse","Zone basse"],["tout","Vue d'ensemble"]];
+  const legend = ui.pcol==="mat"
+    ? STATUS_DEF.map(s=>`<span><span class="dot" style="background:${s.c}"></span>${s.l}</span>`).join("")
+    : COLORS.slice(0,5).map(c=>`<span><span class="dot" style="background:${c.c}"></span>${c.l}</span>`).join("");
+  const pmBar = ui.pm ? `<div class="pmbar">${ui.pm.kind==="move" ? "↔︎ Touchez la nouvelle place" : `📍 Rangement en cours · ${unplacedOf(wineById(ui.pm.w)||{})} à ranger`}<button class="btn ghost" data-act="pmstop">${ui.pm.kind==="move"?"Annuler":"Terminer"}</button></div>` : "";
+  $("#main").innerHTML = `${backupBanner()}
+  <div class="toolbar"><input class="search" id="q" type="search" placeholder="Rechercher un vin dans la cave…" value="${esc(ui.q)}">${viewSeg()}</div>
+  <div class="ptools">
+    <div class="seg">${secs.map(([k,l])=>`<button data-sec="${k}" class="${ui.ps===k?"on":""}">${l}${k!=="tout"?` <small>${sectionCount(k)}</small>`:""}</button>`).join("")}</div>
+    <div class="seg"><button data-pcol="couleur" class="${ui.pcol!=="mat"?"on":""}">Par couleur</button><button data-pcol="mat" class="${ui.pcol==="mat"?"on":""}">Par maturité</button></div>
+    <div class="plg">${legend}</div>
+  </div>
+  ${pmBar}
+  <div class="pwrap"><div class="pmain sec-${ui.ps}">${sectionHTML(ui.ps)}</div><div class="panel pside">${panelHTML()}</div></div>`;
+  bindPlan();
+}
+function viewSeg(){ return `<div class="seg"><button data-cv="cartes" class="${ui.cv!=="plan"?"on":""}">▦ Cartes</button><button data-cv="plan" class="${ui.cv==="plan"?"on":""}">⊞ Plan de la cave</button></div>`; }
+function bindViewSeg(){ document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{ ui.cv=b.dataset.cv; ui.sel=null; ui.pm=null; try{localStorage.setItem(KEY+"-view", ui.cv);}catch(e){} render(); }); }
+function bindPlan(){
+  bindViewSeg();
+  const q = $("#q");
+  q.oninput = e=>{ ui.q = e.target.value; ui.sel = null; const pos = e.target.selectionStart; renderPlan(); const nq = $("#q"); nq.focus(); try{ nq.setSelectionRange(pos,pos); }catch(_){} };
+  document.querySelectorAll("[data-sec]").forEach(b=>b.onclick=()=>{ ui.ps = b.dataset.sec; ui.sel = null; renderPlan(); });
+  document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{ ui.ps = b.dataset.go; ui.sel = null; renderPlan(); });
+  document.querySelectorAll("[data-pcol]").forEach(b=>b.onclick=()=>{ ui.pcol = b.dataset.pcol; renderPlan(); });
+  const main = document.querySelector(".pmain");
+  if(main && ui.ps!=="tout") main.onclick = e=>{
+    const lv = e.target.closest("[data-lvl]");
+    if(lv){ ui.sel = lv.dataset.lvl; ui.selLvl = true; renderPlan(); return; }
+    const t = e.target.closest("[data-a]"); if(!t) return;
+    onAddr(t.dataset.a);
+  };
+  document.querySelectorAll(".pside [data-act], .pmbar [data-act]").forEach(b=>b.onclick=()=>onAct(b.dataset.act, b));
+}
+function commit(msg){ save(); renderHeader(); renderPlan(); if(msg) toast(msg); }
+function onAddr(a){
+  ui.selLvl = false;
+  if(ui.pm){
+    const w = wineById(ui.pm.w); if(!w){ ui.pm = null; return renderPlan(); }
+    if(ui.pm.kind==="move"){
+      if(a===ui.pm.from){ ui.pm = null; return renderPlan(); }
+      const info = addrInfo(a);
+      if(freeAt(a)<=0 || (info.kind==="caisse" && stockAt(a).length && stockAt(a)[0].w!==w.id)){ toast("Cette place n'est pas libre"); return; }
+      removeAt(ui.pm.from, w.id, 1); addAt(a, w.id, 1, info.kind==="caisse" && !stockAt(a).length ? 6 : 0);
+      ui.pm = null; ui.sel = a; return commit(`Déplacé vers ${a}`);
+    }
+    const left = unplacedOf(w);
+    if(left<=0){ ui.pm = null; return commit("Toutes les bouteilles sont rangées"); }
+    const k = placeAt(a, w.id, addrInfo(a).kind==="exact" ? 1 : left, {size: left>=12 ? 12 : 6});
+    if(!k) return;
+    if(unplacedOf(w)<=0){ ui.pm = null; ui.sel = null; return commit(`✓ ${w.nom} : toutes les bouteilles sont rangées`); }
+    return commit(`${k} rangée${k>1?"s":""} en ${a}`);
+  }
+  ui.sel = (ui.sel===a) ? null : a; ui.csize = 6;
+  renderPlan();
+}
+function onAct(act, el){
+  const wid = el.dataset.w, a = ui.sel, w = wid && wineById(wid);
+  switch(act){
+    case "pmstop": ui.pm = null; return renderPlan();
+    case "startpm": ui.pm = {kind:"place", w:wid}; ui.sel = null; return renderPlan();
+    case "open": return openDetail(wid);
+    case "newwine": return openForm(null, null, {placeAt:a});
+    case "out": return consume(wid, a);
+    case "binout": return consume(wid, a);
+    case "move": ui.pm = {kind:"move", w:wid, from:a}; return renderPlan();
+    case "unplace": removeAt(a, wid, addrInfo(a).kind==="exact" ? 1 : 1e9); return commit("Retiré · la bouteille reste en cave, non rangée");
+    case "binin": { const k = placeAt(a, wid, 1, {buy:true}); if(k) commit(); return; }
+    case "put": case "putsel": {
+      const id = act==="put" ? wid : ($("#pAll")||{}).value; const ww = wineById(id); if(!ww) return;
+      const info = addrInfo(a), un = unplacedOf(ww);
+      if(act==="putsel" && un<=0 && !confirm(`Toutes les bouteilles de « ${ww.nom} » sont déjà rangées.\nAjouter une bouteille à la cave et la ranger ici ?`)) return;
+      const n = info.kind==="exact" ? 1 : info.kind==="caisse" ? Math.max(1, Math.min(ui.csize||6, un||1)) : Math.max(1, Math.min(un||1, freeAt(a)));
+      const k = placeAt(a, id, n, {buy:true, size:ui.csize||6}); if(!k) return;
+      if(info.kind==="exact" && unplacedOf(ww)>0){ ui.pm = {kind:"place", w:id}; ui.sel = null; return commit(`Rangée en ${a} · touchez d'autres places pour les ${unplacedOf(ww)} restantes`); }
+      return commit(`${k} bouteille${k>1?"s":""} rangée${k>1?"s":""} en ${a}`);
+    }
+    case "auto": {
+      const ww = wineById(ui.pm.w); let left = unplacedOf(ww), k = 0;
+      const sec = ui.ps==="tout" ? "gauche" : ui.ps;
+      const inSec = x => sec==="gauche" ? /^[12]-|^P([1-9]|1[0-7])$/.test(x) : sec==="droite" ? /^[34]-|^P(1[89]|2\d|3[0-4])$/.test(x) : sec==="arche" ? /^A-/.test(x) : false;
+      if(sec==="basse"){ for(let i=1;i<=27 && left>0;i++){ const b = "V"+i; if(addrInfo(b).kind==="diag" && freeAt(b)>0 && !stockAt(b).some(e=>e.w!==ww.id) ){ const n = placeAt(b, ww.id, left); k += n; left -= n; } } }
+      else allExact().filter(inSec).forEach(x=>{ if(left>0 && !stockAt(x).length && !addrInfo(x).magnum){ addAt(x, ww.id, 1); k++; left--; } });
+      if(!k){ toast("Aucune place libre dans cette section"); return; }
+      if(unplacedOf(ww)<=0) ui.pm = null;
+      return commit(`${k} bouteille${k>1?"s":""} placée${k>1?"s":""} automatiquement`);
+    }
+    case "csize": ui.csize = +el.dataset.v; return renderPlan();
+    case "binmode": if(countAt(a)) return; db.cfg.bin[a] = el.dataset.v; return commit();
+    case "magmode": if(stockAt(a).length || stockAt(a+"-G").length || stockAt(a+"-D").length) return; db.cfg.mag[a] = el.dataset.v; return commit();
+  }
+}
+function startPlacing(wid){ ui.cv = "plan"; ui.pm = {kind:"place", w:wid}; ui.sel = null; try{localStorage.setItem(KEY+"-view","plan");}catch(e){} closeModal(); setView("cave"); }
+
+function askPlace(w){
+  $("#modal").innerHTML = `
+    <div class="mh"><h2>Ranger dans la cave ?</h2><button class="btn ghost" data-close>Plus tard</button></div>
+    <div class="mb"><p style="margin-top:0"><b>${esc(w.nom)}</b> ${esc(w.millesime||"")} — ${+w.quantite} bouteille${+w.quantite>1?"s":""} à ranger.</p>
+    <p class="m">Le plan s'ouvre : touchez les places libres, un bac ou un niveau de magnums. Vous pourrez aussi le faire plus tard depuis la fiche du vin.</p></div>
+    <div class="mf"><button class="btn ghost" data-close>Plus tard</button><button class="btn" id="apGo">📍 Ranger maintenant</button></div>`;
+  openModal();
+  $("#apGo").onclick = ()=>startPlacing(w.id);
 }
 
 /* ---------- Sauvegarde (kDrive / Fichiers) ---------- */
@@ -1106,13 +1630,13 @@ function importFile(file){
     const nb = d.wines.reduce((s,w)=>s+(+w.quantite||0),0);
     const when = d.exportedAt || d.savedAt;
     const apply = mode=>{
-      if(mode==="replace"){ db.wines = d.wines; db.log = d.log||[]; }
+      if(mode==="replace"){ db.wines = d.wines; db.log = d.log||[]; db.stock = d.stock||{}; db.cfg = d.cfg||null; ui.sel = null; ui.pm = null; }
       else {
         const ids = new Set(db.wines.map(w=>w.id)); d.wines.forEach(w=>{ if(!ids.has(w.id)) db.wines.push(w); });
         const lids = new Set(db.log.map(l=>l.id)); (d.log||[]).forEach(l=>{ if(!lids.has(l.id)) db.log.push(l); });
         db.log.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
       }
-      save();
+      ensurePlanData(); save();
       if(mode==="replace") markBackedUp(); // la cave est identique au fichier de sauvegarde
       closeModal(); renderHeader(); render(); toast(mode==="replace" ? "✓ Cave restaurée" : "✓ Vins ajoutés à la cave");
     };
@@ -1186,7 +1710,7 @@ function renderSave(){
   $("#bReset").onclick = ()=>{
     if(!confirm("Vider toute la cave et le journal ? Pensez à faire une sauvegarde avant.")) return;
     if(!confirm("Confirmez-vous la suppression définitive de toutes les données ?")) return;
-    db = {wines:[], log:[], savedAt:null}; save(); backup = {at:backup.at, changes:0, since:null}; lsSet(BK, backup); renderHeader(); renderSave(); toast("Cave vidée");
+    db = {wines:[], log:[], savedAt:null}; ensurePlanData(); ui.sel = null; ui.pm = null; save(); backup = {at:backup.at, changes:0, since:null}; lsSet(BK, backup); renderHeader(); renderSave(); toast("Cave vidée");
   };
 }
 
@@ -1208,7 +1732,7 @@ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>setView(b.dat
 $("#addBtn").onclick = ()=>openForm();
 $("#scanBtn").onclick = ()=>openForm(null, null, {scan:true});
 
-load(); renderHeader(); render(); window.__caveOK = true;
+load(); ensurePlanData(); renderHeader(); render(); window.__caveOK = true;
 if("serviceWorker" in navigator && location.protocol.startsWith("http")){
   window.addEventListener("load", ()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 }
