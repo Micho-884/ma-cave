@@ -28,6 +28,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif}
 button,input,select,textarea{font:inherit;color:inherit}
+button,label.btn{touch-action:manipulation}
 header{position:sticky;top:0;z-index:10;background:var(--accent2);color:#fff;padding:calc(env(safe-area-inset-top) + 12px) 20px 0}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1200px;margin:0 auto}
 h1{margin:0;font:600 26px/1.1 "Georgia","Times New Roman",serif;letter-spacing:.3px}
@@ -67,7 +68,7 @@ select.f{padding:10px 12px;border:1px solid var(--line);border-radius:12px;backg
 .empty{text-align:center;color:var(--muted);padding:60px 20px}
 .empty .big{font:600 22px Georgia,serif;color:var(--text);margin-bottom:8px}
 /* modal */
-.ov{position:fixed;inset:0;background:rgba(20,10,8,.5);display:none;align-items:flex-start;justify-content:center;z-index:50;overflow:auto;padding:30px 16px}
+.ov{position:fixed;top:0;right:0;bottom:0;left:0;-webkit-overflow-scrolling:touch;background:rgba(20,10,8,.5);display:none;align-items:flex-start;justify-content:center;z-index:50;overflow:auto;padding:30px 16px}
 .ov.show{display:flex}
 .modal{background:var(--surface);border-radius:18px;width:100%;max-width:760px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .mh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
@@ -144,7 +145,7 @@ th{background:var(--surface2);font-size:13px;color:var(--muted)}
 .ccy span{position:absolute;right:0;transform:translateY(50%);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ccp{position:relative;border-bottom:1px solid var(--axis)}
 .ccp i{position:absolute;left:0;right:0;border-top:1px solid var(--grid)}
-.ccc{position:absolute;inset:0;display:flex;align-items:flex-end;gap:2px}
+.ccc{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:flex-end;gap:2px}
 .col{flex:1;height:100%;display:flex;align-items:flex-end;justify-content:center;cursor:pointer;min-width:0;border-radius:6px 6px 0 0}
 .col.sel,.col:hover{background:var(--grid)}
 .col .stk{width:min(72%,30px);display:flex;flex-direction:column-reverse;gap:2px}
@@ -210,9 +211,27 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
 <div id="tip" role="tooltip"></div>
 
 <script>
+/* Détecteur d'erreurs : affiche un message clair au lieu d'une app bloquée. */
+(function(){
+  function osInfo(){ var u=navigator.userAgent, m=u.match(/OS (\d+)_(\d+)/), v=u.match(/Version\/(\d+(\.\d+)?)/);
+    return (m ? "iPadOS/iOS "+m[1]+"."+m[2] : (v ? "Safari "+v[1] : "navigateur inconnu")); }
+  function show(msg){
+    var b=document.getElementById("errbox");
+    if(!b){ b=document.createElement("div"); b.id="errbox";
+      b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:999;background:#a3281f;color:#fff;padding:14px 16px;border-radius:12px;font:14px/1.45 -apple-system,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.3)";
+      document.body.appendChild(b); }
+    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.1.2</span>";
+  }
+  window.__caveShowError=show;
+  window.addEventListener("error",function(e){ show((e.message||"Erreur")+(e.lineno?" (ligne "+e.lineno+")":"")); });
+  window.addEventListener("unhandledrejection",function(e){ show("Promesse : "+(e.reason&&e.reason.message||e.reason)); });
+  window.addEventListener("load",function(){ if(!window.__caveOK) show("L'application n'a pas pu démarrer sur cet appareil."); });
+})();
+</script>
+<script>
 "use strict";
 const KEY = "ma-cave-v1";
-const APP_VERSION = "1.1.1";
+const APP_VERSION = "1.1.2";
 const isStandalone = () => window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
 const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
 function showInstallHint(){ if(isStandalone() || !isIOS() || !location.protocol.startsWith("http")) return false; try{ return !localStorage.getItem(KEY+"-hint"); }catch(e){ return true; } }
@@ -240,7 +259,7 @@ function save(){
   catch(e){ storageOK = false; toast("⚠️ Enregistrement impossible (stockage plein ou bloqué) — exportez une sauvegarde"); }
 }
 const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money = n => (Number(n)||0).toLocaleString("fr-CH",{minimumFractionDigits:2,maximumFractionDigits:2});
 const fmtDate = iso => { try{ return new Date(iso).toLocaleDateString("fr-CH",{day:"2-digit",month:"2-digit",year:"numeric"}); }catch(e){ return iso; } };
 const $ = s => document.querySelector(s);
@@ -582,14 +601,14 @@ function analyzeLabel(raw){
   // Couleur
   const anyL = re => gl.some((l,i)=>!DOM.test(nl[i]) && re.test(l));
   const app = best && best.a; let col = "";
-  if(app?.c==="e" || anyL(/(^|[^a-z])(brut|extra brut|brut nature|demi sec|mousseux|cremant|methode traditionnelle|methode champenoise|methode classique|spumante|sekt|petillant|blanc de blancs|blanc de noirs|sparkling|cava|prosecco|champagne)([^a-z]|$)/)) col = "effervescent";
-  else if(app?.c==="l" || anyL(/(liquoreux|moelleux|vendanges? tardives?|grains nobles|late harvest|passito|vin doux naturel|vino dulce|tokaji|eiswein|icewine|vin de paille|tawny)/)) col = "liquoreux";
-  else if(app?.c==="o" || anyL(/(^|[^a-z])(rose|rosato|rosado|oeil de perdrix|blush)([^a-z]|$)/)) col = "rose";
+  if((app&&app.c)==="e" || anyL(/(^|[^a-z])(brut|extra brut|brut nature|demi sec|mousseux|cremant|methode traditionnelle|methode champenoise|methode classique|spumante|sekt|petillant|blanc de blancs|blanc de noirs|sparkling|cava|prosecco|champagne)([^a-z]|$)/)) col = "effervescent";
+  else if((app&&app.c)==="l" || anyL(/(liquoreux|moelleux|vendanges? tardives?|grains nobles|late harvest|passito|vin doux naturel|vino dulce|tokaji|eiswein|icewine|vin de paille|tawny)/)) col = "liquoreux";
+  else if((app&&app.c)==="o" || anyL(/(^|[^a-z])(rose|rosato|rosado|oeil de perdrix|blush)([^a-z]|$)/)) col = "rose";
   else {
     const ex = gl.map((l,i)=>DOM.test(nl[i])?"":l.trim());
     if(ex.some(l=>/(^|\s)(blanc|bianco|blanco|weisswein)$|white wine|^white$/.test(l))) col = "blanc";
     else if(ex.some(l=>/(^|\s)(rouge|rosso|tinto|rotwein)$|red wine|^red$/.test(l))) col = "rouge";
-    else if(app?.c) col = app.c;
+    else if(app&&app.c) col = app.c;
     else if(gcol.r || gcol.b) col = gcol.r>=gcol.b ? "rouge" : "blanc";
   }
   if(col) out.couleur = col;
@@ -634,7 +653,7 @@ function openForm(id, copyFrom, opts={}){
   const editing = id ? db.wines.find(x=>x.id===id) : null;
   const w = editing ? {...editing} : copyFrom ? {...copyFrom, id:null, quantite:copyFrom.quantite, millesime:"", photo:copyFrom.photo} : {couleur:"rouge", quantite:1, contenance:"75 cl", note:0};
   const datalist = (name, field) => `<datalist id="dl-${name}">${[...new Set(db.wines.map(x=>x[field]).filter(Boolean))].sort().map(v=>`<option value="${esc(v)}">`).join("")}</datalist>`;
-  const f = (k,l,cls="",type="text",extra="") => `<div class="fl ${cls}"><label for="f_${k}">${l}</label><input id="f_${k}" type="${type}" value="${esc(w[k]??"")}" ${extra}></div>`;
+  const f = (k,l,cls="",type="text",extra="") => `<div class="fl ${cls}"><label for="f_${k}">${l}</label><input id="f_${k}" type="${type}" value="${esc(w[k]==null?"":w[k])}" ${extra}></div>`;
   $("#modal").innerHTML = `
     <div class="mh"><h2>${editing?"Modifier le vin":"Ajouter un vin"}</h2><button class="btn ghost" data-close>Annuler</button></div>
     <div class="mb"><div class="form">
@@ -719,7 +738,10 @@ function openForm(id, copyFrom, opts={}){
       : "Aucune information reconnue. Essayez de rescanner l'étiquette, de plus près et bien éclairée.";
   };
   let scanT;
-  $("#scanTxt").addEventListener("input", ()=>{ clearTimeout(scanT); scanT = setTimeout(applyScan, 400); });
+  const ta = $("#scanTxt"); let lastTxt = "";
+  const onTxt = ()=>{ clearTimeout(scanT); scanT = setTimeout(()=>{ lastTxt = ta.value; applyScan(); }, 400); };
+  ["input","change","keyup","paste"].forEach(ev=>ta.addEventListener(ev, onTxt));
+  const poll = setInterval(()=>{ if(!document.body.contains(ta)) return clearInterval(poll); if(ta.value!==lastTxt && ta.value.trim()) onTxt(); }, 700);
   $("#scanRun").onclick = applyScan;
   $("#scanClear").onclick = ()=>{ $("#scanTxt").value=""; $("#scanRes").textContent=""; $("#scanTxt").focus(); };
   $("#scanPaste").onclick = async ()=>{
@@ -1157,7 +1179,7 @@ function renderSave(){
   $("#pChg").onchange = e=>{ prefs.changes = +e.target.value; lsSet(PREFS, prefs); renderSave(); renderHeader(); };
   $("#bCsv").onclick = ()=>{
     const cols = [["nom","Nom"],["domaine","Domaine"],["appellation","Appellation"],["region","Région"],["pays","Pays"],["couleur","Couleur"],["millesime","Millésime"],["cepages","Cépages"],["contenance","Contenance"],["degre","Degré"],["quantite","Quantité"],["emplacement","Emplacement"],["prix","Prix"],["fournisseur","Fournisseur"],["dateAchat","Date d'achat"],["boireDe","Boire dès"],["boireA","Boire jusqu'à"],["note","Note"],["commentaire","Commentaire"]];
-    const cell = v => `"${String(v??"").replace(/"/g,'""')}"`;
+    const cell = v => `"${String(v==null?"":v).replace(/"/g,'""')}"`;
     const csv = "﻿"+[cols.map(c=>cell(c[1])).join(";"), ...db.wines.map(w=>cols.map(c=>cell(c[0]==="couleur"?colOf(w.couleur).l:w[c[0]])).join(";"))].join("\r\n");
     download(`ma-cave-inventaire-${stamp()}.csv`, csv, "text/csv;charset=utf-8");
   };
@@ -1186,7 +1208,7 @@ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>setView(b.dat
 $("#addBtn").onclick = ()=>openForm();
 $("#scanBtn").onclick = ()=>openForm(null, null, {scan:true});
 
-load(); renderHeader(); render();
+load(); renderHeader(); render(); window.__caveOK = true;
 if("serviceWorker" in navigator && location.protocol.startsWith("http")){
   window.addEventListener("load", ()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 }
