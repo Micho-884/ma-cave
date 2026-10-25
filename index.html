@@ -283,6 +283,29 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
 .prog{background:rgba(31,111,235,.1);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:15px}
 @media (max-width:1050px){ .pwrap{grid-template-columns:1fr} .pside{position:static;max-height:none} }
 @media (max-width:700px){ .wing3{grid-template-columns:1fr} .low3,.ov3,.arch2{grid-template-columns:1fr} .prow{grid-template-columns:repeat(9,1fr)} .prow .gap{margin-left:0} }
+
+.cpop{position:absolute;z-index:45;width:300px;max-width:calc(100vw - 16px);background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.28);padding:14px 14px 12px;font-size:14px}
+.cpop:before{content:"";position:absolute;width:16px;height:16px;background:var(--surface);-webkit-transform:rotate(45deg);transform:rotate(45deg);border-left:1px solid var(--line);border-top:1px solid var(--line);top:-9px;left:var(--ax,40px)}
+.cpop.up:before{top:auto;bottom:-9px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cpop .ad{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;background:var(--surface2);color:var(--muted);border-radius:6px;padding:2px 7px;margin:0 30px 8px 0}
+.cpop .x{position:absolute;right:10px;top:10px;width:30px;height:30px;border-radius:50%;border:0;background:var(--surface2);color:var(--muted);font-size:15px;cursor:pointer}
+.cpop .t{display:flex;align-items:flex-start}.cpop .t .dot{margin:6px 9px 0 0;flex:none}
+.cpop .nm{font:600 18px/1.2 Georgia,serif}.cpop .nm span{color:var(--muted);font-weight:400}
+.cpop .sb{color:var(--muted);font-size:13px;margin-top:2px}
+.cpop .bd{margin:9px 0 2px}.cpop .bd .badge{display:inline-block;margin:0 4px 4px 0}
+.cpop .ln{display:flex;align-items:center;font-size:13px;padding:7px 0;border-top:1px solid var(--line)}
+.cpop .ln b{margin-left:auto;padding-left:10px;text-align:right}.cpop .ln .dot{margin-right:8px;flex:none}
+.cpop .ln .lw{flex:1;min-width:0}.cpop .ln .badge{font-size:11px;padding:2px 6px}
+.cpop .ln .mini{margin-left:8px;padding:5px 8px}
+.cpop .ac{display:grid;grid-template-columns:1fr 1fr 1fr;grid-gap:6px;margin-top:10px}
+.cpop .ac.two{grid-template-columns:1fr 1fr}
+.cpop .ac .btn{min-height:42px;padding:6px 4px;font-size:13px}
+.cpop .fill{height:10px;border-radius:5px;background:var(--grid);display:flex;overflow:hidden;margin:8px 0 4px}.cpop .fill i{display:block;height:100%}
+.cpop .m{color:var(--muted);font-size:12px;margin-bottom:4px}
+.eloc{display:grid;grid-template-columns:1fr 1fr;grid-gap:10px}
+.eloc select{padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-height:44px;width:100%}
+.ehint{font-size:13px;color:var(--muted);margin-top:2px;min-height:1em}
+@media (max-width:700px){ .eloc{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -317,7 +340,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
     if(!b){ b=document.createElement("div"); b.id="errbox";
       b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:999;background:#a3281f;color:#fff;padding:14px 16px;border-radius:12px;font:14px/1.45 -apple-system,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.3)";
       document.body.appendChild(b); }
-    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.2.0</span>";
+    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.3.0</span>";
   }
   window.__caveShowError=show;
   window.addEventListener("error",function(e){ show((e.message||"Erreur")+(e.lineno?" (ligne "+e.lineno+")":"")); });
@@ -328,7 +351,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
 <script>
 "use strict";
 const KEY = "ma-cave-v1";
-const APP_VERSION = "1.2.0";
+const APP_VERSION = "1.3.0";
 const isStandalone = () => window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
 const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
 function showInstallHint(){ if(isStandalone() || !isIOS() || !location.protocol.startsWith("http")) return false; try{ return !localStorage.getItem(KEY+"-hint"); }catch(e){ return true; } }
@@ -342,7 +365,7 @@ const YEAR = () => new Date().getFullYear();
 let storageOK = true;
 let db = {wines:[], log:[], savedAt:null};
 let ui = {view:"cave", q:"", colors:new Set(), region:"", status:"", sort:"nom", showEmpty:false, facet:null, dm:"btl", dc:"", dwTab:"btl",
-  cv:(function(){ try{ return localStorage.getItem("ma-cave-v1-view")||"cartes"; }catch(e){ return "cartes"; } })(), ps:"gauche", pcol:"couleur", sel:null, pm:null, selLvl:false, csize:6};
+  cv:(function(){ try{ return localStorage.getItem("ma-cave-v1-view")||"cartes"; }catch(e){ return "cartes"; } })(), ps:"gauche", pcol:"couleur", sel:null, pm:null, selLvl:false, csize:6, pop:null};
 
 function load(){
   try{
@@ -795,14 +818,15 @@ function openForm(id, copyFrom, opts={}){
       <div class="fl s2"><label for="f_couleur">Couleur</label><select id="f_couleur">${COLORS.map(c=>`<option value="${c.k}" ${w.couleur===c.k?"selected":""}>${c.l}</option>`).join("")}</select></div>
       ${f("millesime","Millésime","s2","number",'inputmode="numeric" placeholder="'+(YEAR()-3)+'"')}
       ${f("contenance","Contenance","s2","text",'list="dl-cont"')}
-      ${f("degre","Degré (% vol)","s2","text",'inputmode="decimal" placeholder="13,5"')}
-      ${f("cepages","Cépages","s6","text",'list="dl-cep"')}
+      ${f("cepages","Cépages","s2","text",'list="dl-cep"')}
       <div class="sec">En cave</div>
       ${f("quantite","Quantité","s2","number",'min="0" inputmode="numeric"')}
-      ${f("emplacement","Note d'emplacement","s2","text",'list="dl-emp" placeholder="Facultatif, ex. carton du garage"')}
       ${f("prix","Prix d'achat / btl","s2","number",'step="0.01" inputmode="decimal"')}
-      ${f("fournisseur","Fournisseur","","text",'list="dl-four"')}
-      ${f("dateAchat","Date d'achat","","date")}
+      ${f("fournisseur","Fournisseur","s2","text",'list="dl-four"')}
+      <div class="fl s6"><label for="f_ecat">Emplacement</label>
+        <div class="eloc"><select id="f_ecat"></select><select id="f_eslot" aria-label="Place libre"></select></div>
+        <div class="ehint" id="f_ehint"></div></div>
+      ${f("dateAchat","Date d'achat","s2","date")}
       <div class="sec">Garde & dégustation</div>
       ${f("boireDe","À boire à partir de","s2","number",'inputmode="numeric"')}
       ${f("boireA","À boire jusqu'à","s2","number",'inputmode="numeric"')}
@@ -865,16 +889,18 @@ function openForm(id, copyFrom, opts={}){
   };
   $("#scanShow") && ($("#scanShow").onclick = ()=>{ $("#scanBody").hidden=false; $("#scanShow").remove(); $("#scanTxt").focus(); });
   if(opts.scan) setTimeout(()=>$("#scanTxt").focus(), 50);
+  const getLoc = setupLocField(w, editing, opts);
   $("#fSave").onclick = ()=>{
     const g = k => ($("#f_"+k).value||"").trim();
     const nom = g("nom"); if(!nom){ $("#f_nom").focus(); toast("Le nom est obligatoire"); return; }
     const data = {nom, domaine:g("domaine"), appellation:g("appellation"), region:g("region"), pays:g("pays"), couleur:$("#f_couleur").value,
-      millesime:g("millesime"), cepages:g("cepages"), contenance:g("contenance"), degre:g("degre"), quantite:Math.max(0,parseInt(g("quantite"))||0),
-      emplacement:g("emplacement"), prix:g("prix"), fournisseur:g("fournisseur"), dateAchat:g("dateAchat"),
+      millesime:g("millesime"), cepages:g("cepages"), contenance:g("contenance"), quantite:Math.max(0,parseInt(g("quantite"))||0),
+      prix:g("prix"), fournisseur:g("fournisseur"), dateAchat:g("dateAchat"),
       boireDe:g("boireDe"), boireA:g("boireA"), note, commentaire:$("#f_commentaire").value.trim(), photo};
+    const loc = getLoc(); let target;
     if(editing){
       const diff = data.quantite - (+editing.quantite||0);
-      Object.assign(editing, data); trimPlacements(editing);
+      Object.assign(editing, data); trimPlacements(editing); target = editing;
       if(diff) db.log.unshift({id:uid(), wineId:editing.id, nom:data.nom, millesime:data.millesime, date:new Date().toISOString(), delta:diff, motif:"Correction d'inventaire", note:""});
       toast("Modifications enregistrées");
     } else {
@@ -882,10 +908,11 @@ function openForm(id, copyFrom, opts={}){
       db.wines.push(nw);
       if(nw.quantite) db.log.unshift({id:uid(), wineId:nw.id, nom:nw.nom, millesime:nw.millesime, date:new Date().toISOString(), delta:nw.quantite, motif:"Entrée en cave", note:""});
       toast("Vin ajouté à la cave");
-      if(nw.quantite && opts.placeAt){ placeAt(opts.placeAt, nw.id, addrInfo(opts.placeAt).kind==="exact" ? 1 : nw.quantite, {size:6}); ui.sel = opts.placeAt;
-        if(unplacedOf(nw)>0 && addrInfo(opts.placeAt).kind==="exact"){ ui.pm = {kind:"place", w:nw.id}; ui.sel = null; } }
-      else if(nw.quantite){ save(); closeModal(); renderHeader(); render(); return askPlace(nw); }
+      target = nw;
     }
+    const placed = applyLoc(target, loc), rest = unplacedOf(target);
+    if(placed) setTimeout(()=>toast(`📍 ${placed} bouteille${placed>1?"s":""} rangée${placed>1?"s":""}${rest?` · ${rest} reste${rest>1?"nt":""} à ranger`:""}`), 1200);
+    ui.sel = null; ui.pop = null;
     save(); closeModal(); renderHeader(); render();
   };
 }
@@ -1284,7 +1311,7 @@ function matchQ(w){
 }
 function slotCls(a){
   const e = stockAt(a)[0], cls = [];
-  if(ui.sel===a) cls.push("on");
+  if(ui.sel===a || ui.pop===a) cls.push("on");
   if(ui.pm && !e) cls.push("fr");
   if(e){ const m = matchQ(wineById(e.w)); if(m===true) cls.push("hit"); else if(m===false) cls.push("dim"); }
   else if(ui.q && ui.q.trim()) cls.push("dim");
@@ -1330,7 +1357,7 @@ function aboveHTML(){
 }
 function binHTML(i){
   const a = "V"+i, info = addrInfo(a), list = stockAt(a), n = countAt(a);
-  const cls = ["bin", info.kind, ui.sel===a?"on":"", ui.pm && freeAt(a)>0 ? "fr":""];
+  const cls = ["bin", info.kind, (ui.sel===a||ui.pop===a)?"on":"", ui.pm && freeAt(a)>0 ? "fr":""];
   if(ui.q && ui.q.trim()){ cls.push(list.some(e=>matchQ(wineById(e.w))) ? "hit" : "dim"); }
   let inner;
   if(info.kind==="caisse"){
@@ -1350,7 +1377,7 @@ function binsGroup(title, key){
 function nicheHTML(){
   const list = stockAt("N"), n = countAt("N");
   const items = list.map(e=>{ const w = wineById(e.w); return `<div class="nr"><span class="dot" style="background:${planColor(w)}"></span>${esc(w.nom)} ${w.millesime||""}<b>${e.n}</b></div>`; }).join("") || `<div class="m">Aucune bouteille en présentation</div>`;
-  return `<div class="pz niche ${ui.sel==="N"?"on":""}" data-a="N"><div class="pzh"><b>Niche</b><span>${n} btl</span></div><div class="arch-i">🍷 🍷 🍷</div>${items}</div>`;
+  return `<div class="pz niche ${(ui.sel==="N"||ui.pop==="N")?"on":""}" data-a="N"><div class="pzh"><b>Niche</b><span>${n} btl</span></div><div class="arch-i">🍷 🍷 🍷</div>${items}</div>`;
 }
 function sectionHTML(s){
   if(s==="gauche") return `<div class="wing3">${rackHTML(1)}${magHTML("E1")}${rackHTML(2)}</div>${presHTML(1,17)}`;
@@ -1468,6 +1495,7 @@ function renderPlan(){
   ${pmBar}
   <div class="pwrap"><div class="pmain sec-${ui.ps}">${sectionHTML(ui.ps)}</div><div class="panel pside">${panelHTML()}</div></div>`;
   bindPlan();
+  if(ui.pop) showPop(ui.pop); else hidePop(true);
 }
 function viewSeg(){ return `<div class="seg"><button data-cv="cartes" class="${ui.cv!=="plan"?"on":""}">▦ Cartes</button><button data-cv="plan" class="${ui.cv==="plan"?"on":""}">⊞ Plan de la cave</button></div>`; }
 function bindViewSeg(){ document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{ ui.cv=b.dataset.cv; ui.sel=null; ui.pm=null; try{localStorage.setItem(KEY+"-view", ui.cv);}catch(e){} render(); }); }
@@ -1475,13 +1503,13 @@ function bindPlan(){
   bindViewSeg();
   const q = $("#q");
   q.oninput = e=>{ ui.q = e.target.value; ui.sel = null; const pos = e.target.selectionStart; renderPlan(); const nq = $("#q"); nq.focus(); try{ nq.setSelectionRange(pos,pos); }catch(_){} };
-  document.querySelectorAll("[data-sec]").forEach(b=>b.onclick=()=>{ ui.ps = b.dataset.sec; ui.sel = null; renderPlan(); });
+  document.querySelectorAll("[data-sec]").forEach(b=>b.onclick=()=>{ ui.ps = b.dataset.sec; ui.sel = null; ui.pop = null; renderPlan(); });
   document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{ ui.ps = b.dataset.go; ui.sel = null; renderPlan(); });
   document.querySelectorAll("[data-pcol]").forEach(b=>b.onclick=()=>{ ui.pcol = b.dataset.pcol; renderPlan(); });
   const main = document.querySelector(".pmain");
   if(main && ui.ps!=="tout") main.onclick = e=>{
     const lv = e.target.closest("[data-lvl]");
-    if(lv){ ui.sel = lv.dataset.lvl; ui.selLvl = true; renderPlan(); return; }
+    if(lv){ ui.pop = null; ui.sel = lv.dataset.lvl; ui.selLvl = true; renderPlan(); return; }
     const t = e.target.closest("[data-a]"); if(!t) return;
     onAddr(t.dataset.a);
   };
@@ -1490,6 +1518,7 @@ function bindPlan(){
 function commit(msg){ save(); renderHeader(); renderPlan(); if(msg) toast(msg); }
 function onAddr(a){
   ui.selLvl = false;
+  ui.pop = null;
   if(ui.pm){
     const w = wineById(ui.pm.w); if(!w){ ui.pm = null; return renderPlan(); }
     if(ui.pm.kind==="move"){
@@ -1506,7 +1535,7 @@ function onAddr(a){
     if(unplacedOf(w)<=0){ ui.pm = null; ui.sel = null; return commit(`✓ ${w.nom} : toutes les bouteilles sont rangées`); }
     return commit(`${k} rangée${k>1?"s":""} en ${a}`);
   }
-  ui.sel = (ui.sel===a) ? null : a; ui.csize = 6;
+  ui.sel = null; ui.pop = (ui.pop===a) ? null : a;
   renderPlan();
 }
 function onAct(act, el){
@@ -1555,6 +1584,166 @@ function askPlace(w){
     <div class="mf"><button class="btn ghost" data-close>Plus tard</button><button class="btn" id="apGo">📍 Ranger maintenant</button></div>`;
   openModal();
   $("#apGo").onclick = ()=>startPlacing(w.id);
+}
+
+
+/* ---------- Petite fenêtre de résumé sur le plan ---------- */
+function addrLong(a){
+  let m;
+  if((m = /^([1-4])-(\d+)-([A-F])$/.exec(a))) return `Casier ${m[1]} · Rangée ${m[2]} · ${m[3]}`;
+  if((m = /^A-(\d)-(\d)$/.exec(a))) return `Au-dessus de l'arche · Rangée ${m[1]} · ${m[2]}`;
+  if((m = /^(E[12])-(\d)-([GD])$/.exec(a))) return `Magnums ${m[1]} · Niveau ${m[2]} · ${m[3]==="G"?"gauche":"droite"}`;
+  if((m = /^(E[12])-(\d)$/.exec(a))) return `Magnums ${m[1]} · Niveau ${m[2]} · caisse`;
+  if(/^P\d+$/.test(a)) return `Présentoir · ${a}`;
+  if(/^V\d+$/.test(a)) return `Zone basse · Bac ${a} · ${addrInfo(a).kind==="caisse"?"caisse":"diagonale"}`;
+  if(a==="N") return "Arche · Niche";
+  return a;
+}
+function groupFill(a){
+  let pre = null, name = "";
+  let m = /^([1-4])-/.exec(a);
+  if(m){ pre = m[1]+"-"; name = "Casier "+m[1]; }
+  else if(/^A-/.test(a)){ pre = "A-"; name = "Au-dessus de l'arche"; }
+  else if((m = /^(E[12])-/.exec(a))){ pre = m[1]+"-"; name = "Magnums "+m[1]; }
+  else if(/^P/.test(a)){ pre = "P"; name = "Présentoirs"; }
+  if(!pre) return "";
+  const all = allExact().filter(x=>x.indexOf(pre)===0), used = all.filter(x=>stockAt(x).length).length;
+  return `${name} : ${used} / ${all.length} occupée${used>1?"s":""}`;
+}
+function compactPlaces(ps){ return ps.slice(0,4).map(p=>p.n>1 ? p.a+"×"+p.n : p.a).join(", ") + (ps.length>4 ? ` +${ps.length-4}` : ""); }
+function shortStatus(st){ return {boire:"À boire", vite:"Cette année", passe:"Dépassé", garder:"À garder"}[st.k] || ""; }
+function popHTML(a){
+  const info = addrInfo(a), list = stockAt(a);
+  const head = `<button class="x" data-pa="close" aria-label="Fermer">✕</button><span class="ad">${esc(addrLong(a))}</span>`;
+  if(info.kind==="exact"){
+    const e = list[0];
+    if(e){
+      const w = wineById(e.w), st = status(w);
+      const last = db.log.find(l=>l.wineId===w.id && l.delta<0);
+      const others = placesOf(w.id).filter(x=>x.a!==a), un = unplacedOf(w);
+      return head + `<div class="t"><span class="dot" style="background:${colOf(w.couleur).c}"></span><div style="min-width:0"><div class="nm">${esc(w.nom)} <span>${esc(w.millesime||"")}</span></div>
+        <div class="sb">${esc([w.appellation, w.region].filter(Boolean).join(" · "))}</div></div></div>
+        <div class="bd">${st.l?`<span class="badge ${st.cls}">${st.l}${w.boireA?" · "+(w.boireDe||"…")+"–"+w.boireA:""}</span>`:""}${+w.note?`<span class="badge">${"★".repeat(+w.note)}</span>`:""}${+w.prix?`<span class="badge">${money(w.prix)} / btl</span>`:""}</div>
+        <div class="ln">📍&nbsp;${+w.quantite} en cave<b>${others.length ? esc(compactPlaces(others)) : "uniquement ici"}${un?` · ${un} non rangée${un>1?"s":""}`:""}</b></div>
+        ${last?`<div class="ln">🕓&nbsp;Dernière sortie<b>${fmtDate(last.date)}</b></div>`:""}
+        <div class="ac"><button class="btn" data-pa="out" data-w="${w.id}">🍷 Sortir</button><button class="btn ghost" data-pa="move" data-w="${w.id}">↔︎ Déplacer</button><button class="btn ghost" data-pa="open" data-w="${w.id}">Fiche</button></div>`;
+    }
+    const todo = db.wines.filter(w=>unplacedOf(w)>0);
+    return head + `<div class="nm">Place libre</div><div class="sb">${info.magnum?"Place pour un magnum · ":""}${esc(groupFill(a))}</div>
+      ${todo.length?`<div class="ln" style="margin-top:8px">À ranger<b>${esc(todo[0].nom)} ${esc(todo[0].millesime||"")} · ${unplacedOf(todo[0])} btl${todo.length>1?` (+${todo.length-1} vin${todo.length>2?"s":""})`:""}</b></div>`:""}
+      <div class="ac two"><button class="btn" data-pa="detail">📍 Ranger un vin ici</button><button class="btn ghost" data-pa="new">＋ Nouveau vin</button></div>`;
+  }
+  const n = countAt(a), niche = info.kind==="niche";
+  const title = niche ? `${n} bouteille${n>1?"s":""} en présentation` : `${n} / ${info.cap} bouteilles`;
+  const bar = niche || !n ? "" : `<div class="fill">${list.map(e=>`<i style="flex:${e.n};background:${colOf(wineById(e.w).couleur).c}"></i>`).join("")}${info.cap-n>0?`<i style="flex:${info.cap-n}"></i>`:""}</div>`;
+  const left = info.cap - n;
+  const free = niche ? "" : `<div class="m">${info.kind==="caisse" && !n ? "Libre pour une caisse" : left>0 ? left+" place"+(left>1?"s":"")+" libre"+(left>1?"s":"") : "Complet"}</div>`;
+  const rows = list.map(e=>{ const w = wineById(e.w), st = status(w);
+    return `<div class="ln"><span class="dot" style="background:${colOf(w.couleur).c}"></span><span class="lw">${esc(w.nom)} ${esc(w.millesime||"")}${shortStatus(st)?` <span class="badge ${st.cls}">${shortStatus(st)}</span>`:""}</span><b>${e.n}</b><button class="mini" data-pa="out" data-w="${w.id}" aria-label="Sortir une bouteille de ${esc(w.nom)}">🍷 Sortir</button></div>`; }).join("");
+  return head + `<div class="nm">${title}</div>${bar}${free}${rows}
+    <div class="ac two"><button class="btn" data-pa="detail">${n ? "⚙︎ Ranger / gérer" : "📍 Ranger un vin ici"}</button><button class="btn ghost" data-pa="new">＋ Nouveau vin</button></div>`;
+}
+function showPop(a){
+  hidePop(true);
+  const t = document.querySelector(`.pmain [data-a="${a}"]`);
+  if(!t){ ui.pop = null; return; }
+  const d = document.createElement("div"); d.id = "cpop"; d.className = "cpop"; d.setAttribute("role","dialog");
+  d.innerHTML = popHTML(a); document.body.appendChild(d);
+  const r = t.getBoundingClientRect(), W = d.offsetWidth, H = d.offsetHeight;
+  let left = Math.max(8, Math.min(r.left + r.width/2 - W/2, window.innerWidth - W - 8));
+  const below = (r.bottom + 12 + H < window.innerHeight - 8) || (r.top - 12 - H < 70);
+  const top = below ? r.bottom + 12 : r.top - 12 - H;
+  if(!below) d.className += " up";
+  d.style.left = left + "px"; d.style.top = (top + window.pageYOffset) + "px";
+  d.style.setProperty("--ax", Math.max(14, Math.min(W - 30, r.left + r.width/2 - left - 8)) + "px");
+  d.onclick = e=>{ e.stopPropagation(); const b = e.target.closest("[data-pa]"); if(b) onPopAct(b.dataset.pa, b.dataset.w, a); };
+}
+function hidePop(keepState){ const d = document.getElementById("cpop"); if(d) d.parentNode.removeChild(d); if(!keepState) ui.pop = null; }
+function onPopAct(act, wid, a){
+  ui.pop = null; hidePop();
+  if(act==="close") return renderPlan();
+  if(act==="out") return consume(wid, a);
+  if(act==="open") return openDetail(wid);
+  if(act==="move"){ ui.pm = {kind:"move", w:wid, from:a}; ui.sel = null; return renderPlan(); }
+  if(act==="detail"){ ui.sel = a; ui.selLvl = false; ui.csize = 6; return renderPlan(); }
+  if(act==="new") return openForm(null, null, {placeAt:a});
+}
+document.addEventListener("click", e=>{
+  if(!ui.pop) return;
+  if(e.target.closest && e.target.closest("#cpop,[data-a],[data-lvl],#ov")) return;
+  hidePop();
+  if(ui.view==="cave" && ui.cv==="plan") renderPlan();
+});
+
+/* ---------- Choix d'un emplacement libre dans le formulaire ---------- */
+function slotCats(){
+  const ex = allExact(), free = x=>!stockAt(x).length, cats = [];
+  for(let c=1;c<=4;c++) cats.push({k:"c"+c, l:"Casier "+c, list: ex.filter(x=>x.indexOf(c+"-")===0 && free(x)).map(x=>{ const q = x.split("-"); return {a:x, l:q[2]+q[1]}; })});
+  cats.push({k:"A", l:"Au-dessus de l'arche", list: ex.filter(x=>/^A-/.test(x) && free(x)).map(x=>{ const q = x.split("-"); return {a:x, l:"Rangée "+q[1]+" · "+q[2]}; })});
+  ["E1","E2"].forEach(e=>cats.push({k:e, l:"Magnums "+e, mag:true, list: ex.filter(x=>x.indexOf(e+"-")===0 && free(x)).map(x=>{ const q = x.split("-"); return {a:x, l:"Niveau "+q[1]+(q[2] ? " · "+(q[2]==="G"?"gauche":"droite") : " · caisse")}; })}));
+  cats.push({k:"P", l:"Présentoir", list: ex.filter(x=>/^P/.test(x) && free(x)).map(x=>({a:x, l:x}))});
+  const bins = [];
+  for(let i=1;i<=27;i++){ const a = "V"+i, inf = addrInfo(a);
+    if(inf.kind==="diag" && freeAt(a)>0) bins.push({a:a, l:`${a} · diagonale · ${freeAt(a)} libre${freeAt(a)>1?"s":""}`});
+    else if(inf.kind==="caisse" && !stockAt(a).length) bins.push({a:a, l:`${a} · caisse vide`}); }
+  cats.push({k:"V", l:"Zone basse (bacs)", list:bins});
+  cats.push({k:"N", l:"Niche (arche)", list:[{a:"N", l:"Niche · présentation"}]});
+  return cats.filter(c=>c.list.length);
+}
+function fillPlan(cat, start, n){
+  const out = []; if(!cat || n<=0) return out;
+  let i0 = 0; cat.list.forEach((x,i)=>{ if(x.a===start) i0 = i; });
+  let left = n;
+  for(const x of cat.list.slice(i0)){
+    if(left<=0) break;
+    const inf = addrInfo(x.a);
+    const k = inf.kind==="niche" ? left : inf.kind==="caisse" ? Math.min(left, left>=12 ? 12 : 6) : inf.kind==="diag" ? Math.min(left, freeAt(x.a)) : 1;
+    out.push({a:x.a, l:x.l, n:k}); left -= k;
+  }
+  return out;
+}
+function setupLocField(w, editing, opts){
+  const cats = slotCats(), cSel = $("#f_ecat"), sSel = $("#f_eslot"), hint = $("#f_ehint");
+  const catOf = a => cats.find(c=>c.list.some(x=>x.a===a));
+  const toPlace = ()=>{ const q = Math.max(0, parseInt($("#f_quantite").value)||0); return editing ? Math.max(0, q - Math.min(placedOf(editing.id), q)) : q; };
+  cSel.innerHTML = `<option value="">Ne pas ranger maintenant</option>` + cats.map(c=>`<option value="${c.k}">${c.l} · ${c.list.length} libre${c.list.length>1?"s":""}</option>`).join("");
+  const isMag = ()=>/150|magnum/i.test($("#f_contenance").value||"");
+  let def = "";
+  if(opts.placeAt && catOf(opts.placeAt)) def = catOf(opts.placeAt).k;
+  else if(toPlace()>0){ const mag = isMag() && cats.find(c=>c.mag), cas = cats.find(c=>/^c\d/.test(c.k)); def = (mag || cas || cats[0] || {}).k || ""; }
+  cSel.value = def;
+  const fillSlots = keep=>{
+    const cat = cats.find(c=>c.k===cSel.value);
+    sSel.innerHTML = cat ? cat.list.map(x=>`<option value="${x.a}">${x.l}</option>`).join("") : "";
+    sSel.disabled = !cat; sSel.style.display = cat ? "" : "none";
+    if(cat && keep && cat.list.some(x=>x.a===keep)) sSel.value = keep;
+  };
+  const upd = ()=>{
+    const cat = cats.find(c=>c.k===cSel.value), n = toPlace();
+    const cur = editing && placesOf(editing.id).length ? `Actuellement : ${placeSummary(editing)}. ` : "";
+    if(!cat){ hint.textContent = cur + (n ? "Vous pourrez ranger les bouteilles plus tard depuis le plan." : ""); return; }
+    if(!n){ hint.textContent = cur || "Indiquez une quantité pour ranger les bouteilles."; return; }
+    const plan = fillPlan(cat, sSel.value, n), placed = plan.reduce((t,x)=>t+x.n,0);
+    const first = plan[0], last = plan[plan.length-1];
+    let txt = `→ ${placed} bouteille${placed>1?"s":""} : ` + (plan.length===1 ? first.l.split(" · ")[0] : `${first.l.split(" · ")[0]} à ${last.l.split(" · ")[0]}`);
+    if(n>placed) txt += ` · ${n-placed} restera${n-placed>1?"ont":""} à ranger`;
+    hint.textContent = cur + txt;
+  };
+  fillSlots(opts.placeAt); upd();
+  let picked = !!opts.placeAt;
+  cSel.onchange = ()=>{ picked = true; fillSlots(); upd(); };
+  const onCont = ()=>{ if(picked) return; const m = cats.find(c=>c.mag), cas = cats.find(c=>/^c\d/.test(c.k));
+    const want = isMag() && m ? m.k : (cas||{}).k; if(want && cSel.value && cSel.value!==want){ cSel.value = want; fillSlots(); upd(); } };
+  $("#f_contenance").addEventListener("input", onCont); $("#f_contenance").addEventListener("change", onCont);
+  sSel.onchange = upd;
+  $("#f_quantite").addEventListener("input", upd);
+  return ()=>({cat: cats.find(c=>c.k===cSel.value), start: sSel.value});
+}
+function applyLoc(w, choice){
+  if(!choice || !choice.cat) return 0;
+  const plan = fillPlan(choice.cat, choice.start, unplacedOf(w));
+  let k = 0; plan.forEach(x=>{ k += placeAt(x.a, w.id, x.n, {size: x.n>=12 ? 12 : 6}); });
+  return k;
 }
 
 /* ---------- Sauvegarde (kDrive / Fichiers) ---------- */
@@ -1702,9 +1891,9 @@ function renderSave(){
   $("#pDays").onchange = e=>{ prefs.days = +e.target.value; lsSet(PREFS, prefs); renderSave(); renderHeader(); };
   $("#pChg").onchange = e=>{ prefs.changes = +e.target.value; lsSet(PREFS, prefs); renderSave(); renderHeader(); };
   $("#bCsv").onclick = ()=>{
-    const cols = [["nom","Nom"],["domaine","Domaine"],["appellation","Appellation"],["region","Région"],["pays","Pays"],["couleur","Couleur"],["millesime","Millésime"],["cepages","Cépages"],["contenance","Contenance"],["degre","Degré"],["quantite","Quantité"],["emplacement","Emplacement"],["prix","Prix"],["fournisseur","Fournisseur"],["dateAchat","Date d'achat"],["boireDe","Boire dès"],["boireA","Boire jusqu'à"],["note","Note"],["commentaire","Commentaire"]];
+    const cols = [["nom","Nom"],["domaine","Domaine"],["appellation","Appellation"],["region","Région"],["pays","Pays"],["couleur","Couleur"],["millesime","Millésime"],["cepages","Cépages"],["contenance","Contenance"],["quantite","Quantité"],["emplacement","Emplacement"],["prix","Prix"],["fournisseur","Fournisseur"],["dateAchat","Date d'achat"],["boireDe","Boire dès"],["boireA","Boire jusqu'à"],["note","Note"],["commentaire","Commentaire"]];
     const cell = v => `"${String(v==null?"":v).replace(/"/g,'""')}"`;
-    const csv = "﻿"+[cols.map(c=>cell(c[1])).join(";"), ...db.wines.map(w=>cols.map(c=>cell(c[0]==="couleur"?colOf(w.couleur).l:w[c[0]])).join(";"))].join("\r\n");
+    const csv = "﻿"+[cols.map(c=>cell(c[1])).join(";"), ...db.wines.map(w=>cols.map(c=>cell(c[0]==="couleur"?colOf(w.couleur).l:c[0]==="emplacement"?placeSummary(w):w[c[0]])).join(";"))].join("\r\n");
     download(`ma-cave-inventaire-${stamp()}.csv`, csv, "text/csv;charset=utf-8");
   };
   $("#bReset").onclick = ()=>{
@@ -1724,7 +1913,7 @@ function render(){
   ({cave:renderCave, journal:renderJournal, stats:renderStats, save:renderSave})[ui.view]();
 }
 function setView(v){
-  hideTip(); ui.view = v;
+  hideTip(); hidePop(); ui.view = v;
   document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("on", x.dataset.v===v));
   render(); window.scrollTo(0,0);
 }
