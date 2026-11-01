@@ -311,6 +311,65 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
 .memgrid > div{background:var(--surface2);border-radius:10px;padding:10px 12px}
 .memgrid b{display:block;font:600 20px Georgia,serif}.memgrid span{font-size:12px;color:var(--muted)}
 @media (max-width:700px){ .memgrid{grid-template-columns:1fr} }
+
+.mtag{flex:none;margin-left:4px;font-size:10px;font-weight:700;border-radius:5px;padding:2px 5px;background:var(--surface2);color:var(--muted);min-width:18px;text-align:center;cursor:pointer}
+.mtag.t-libre{background:#1f6feb;color:#fff}
+.lv{flex:1;display:flex;align-items:flex-end;flex-wrap:wrap;padding:3px 4px;border:1.5px dashed rgba(31,111,235,.55);border-radius:8px;background:rgba(31,111,235,.05);min-height:30px;cursor:pointer;min-width:0}
+.lv b{margin-left:auto;font-size:10px;color:var(--muted);align-self:center;white-space:nowrap;padding-left:3px}
+.lv .lvv{font-size:11px;color:var(--muted);align-self:center}
+.lv.on{box-shadow:0 0 0 2px var(--surface),0 0 0 5px var(--accent)}
+.lv.hit{box-shadow:0 0 0 2px var(--surface),0 0 0 5px #1f6feb}.lv.dim{opacity:.2}
+.lv.fr{background:rgba(31,111,235,.12)}
+.lb{display:inline-flex;align-items:center;margin:1px 3px 1px 0}
+.lb i{flex:1;border-radius:8px 3px 3px 8px;display:block;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.2)}
+.lb em{width:7px;flex:none;border-radius:0 2px 2px 0;display:block;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.2)}
+.lvsel{background:var(--accent);color:#fff!important;font-weight:700}
+.mopt{display:grid;grid-template-columns:1fr 1fr 1fr;grid-gap:6px;margin-bottom:12px}
+.mopt button{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;color:var(--text)}
+.mopt button.on{border-color:var(--accent);background:rgba(168,40,59,.06);box-shadow:inset 0 0 0 1px var(--accent)}
+.mopt button[disabled]{opacity:.4}
+.mopt .ic{font-size:15px;color:var(--muted);letter-spacing:-2px}.mopt b{font-size:13px;margin-top:2px}.mopt small{font-size:10px;color:var(--muted);line-height:1.2}
+.capl{display:flex;justify-content:space-between;font-size:13px}
+.fr2{display:flex;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:14px}.fr2 .dot{margin-right:10px}
+.fr2 .qty button,.row3 .qty button{width:32px;height:32px;font-size:17px}.fr2 .qty b,.row3 .qty b{min-width:22px;font-size:15px}
+.row3{display:flex;align-items:center}.row3 select{flex:1;min-width:0;margin-right:8px;min-height:40px}
+
+.lgz3{display:flex;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 10px}.lgz3>span{display:inline-flex;align-items:center;margin-right:18px}
+.mt{font-size:11px;font-weight:700;border-radius:5px;padding:1px 6px;margin-right:6px}.mt.d{background:#1f6feb;color:#fff}.mt.k{background:#e9d6b4;color:#4a3524}
+.low3{grid-template-columns:minmax(0,1fr) minmax(0,.27fr) minmax(0,1fr)!important}
+.bins2{display:grid;grid-gap:6px}
+.vb{border:1.5px solid var(--axis);border-radius:9px;padding:4px 6px 6px;min-height:124px;display:flex;flex-direction:column;background:var(--surface);cursor:pointer;min-width:0}
+.vb.on{box-shadow:0 0 0 2px var(--surface),0 0 0 5px var(--accent)}
+.vb.hit{box-shadow:0 0 0 2px var(--surface),0 0 0 5px #1f6feb}.vb.dim{opacity:.2}
+.vh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;font-size:12px;margin-bottom:3px}.vh b{margin-right:4px}
+.vh span{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.tri{position:relative;flex:1;border-radius:5px;background:rgba(31,111,235,.04);min-height:76px}
+.tri svg{position:absolute;left:0;top:0;width:100%;height:100%}
+.tri polygon{fill:transparent}.tri line{stroke:#8a6a4f;stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
+.vb.fr .tri polygon{fill:rgba(31,111,235,.10)}.vb.fr .tri polygon:active{fill:rgba(31,111,235,.3)}
+.tri i{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.25);pointer-events:none}
+.tc{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap}
+.vb.k{background:rgba(138,106,79,.06)}.vb.k.fr{background:rgba(31,111,235,.08)}
+.stack{flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+.kb{background:#e9d6b4;color:#4a3524;border-radius:6px;padding:4px 6px;margin-top:4px;text-align:center;line-height:1.15}
+.kb b{display:block;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font:600 11px/1.15 Georgia,serif;overflow:hidden}
+.kb small{display:flex;align-items:center;justify-content:center;font:400 9.5px -apple-system,sans-serif;color:#6b5440;margin-top:1px}.kb .dot{width:7px;height:7px;margin-right:4px}
+.kmore{font-size:10px;color:var(--muted);text-align:center;margin-top:3px}
+.ce{margin-top:auto;border:1.5px dashed #c9b493;border-radius:5px;color:var(--muted);font-size:10px;text-align:center;padding:10px 2px}
+.pwrap.below{grid-template-columns:1fr}.pwrap.below .pside{position:static;max-height:none}
+.pcols{display:grid;grid-template-columns:1fr 1fr;grid-gap:24px}
+.pwrap:not(.below) .pcols{grid-template-columns:1fr;grid-gap:4px}
+.mopt.two{grid-template-columns:1fr 1fr}
+.cmp{border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin-top:10px}
+.cmph{display:flex;align-items:center;font-size:13px}.cmph b{margin:0 6px}.cmph em{margin-left:auto;font-style:normal;font-weight:700}
+.mini-tri{width:18px;height:14px;display:inline-block;flex:none;border:1.5px solid var(--axis);border-radius:3px;background-image:linear-gradient(to top left,transparent calc(50% - 1px),#8a6a4f 50%,transparent calc(50% + 1px))}
+.mini-tri.up{box-shadow:inset 6px 5px 0 -1px rgba(31,111,235,.35)}.mini-tri.lo{box-shadow:inset -6px -5px 0 -1px rgba(31,111,235,.35)}
+.kc{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;background:rgba(233,214,180,.25)}
+.kch{display:flex;align-items:center;font-size:14px}.kch .dot{margin-right:8px}.kch b{flex:1;min-width:0}
+.kcb{display:flex;align-items:center;margin-top:6px}.fillk{flex:1;height:8px;background:var(--grid);border-radius:4px;overflow:hidden;margin-right:10px}.fillk i{display:block;height:100%}
+.kcb .qty button{width:30px;height:30px;font-size:16px}.kcb .qty b{min-width:22px;font-size:15px}
+.cpop .pk2{font-size:11px;font-weight:700;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.3px}
+@media (max-width:700px){ .pcols{grid-template-columns:1fr} .low3{grid-template-columns:1fr!important} }
 </style>
 </head>
 <body>
@@ -345,7 +404,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
     if(!b){ b=document.createElement("div"); b.id="errbox";
       b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:999;background:#a3281f;color:#fff;padding:14px 16px;border-radius:12px;font:14px/1.45 -apple-system,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.3)";
       document.body.appendChild(b); }
-    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.4.0</span>";
+    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.6.0</span>";
   }
   window.__caveShowError=show;
   window.addEventListener("error",function(e){ show((e.message||"Erreur")+(e.lineno?" (ligne "+e.lineno+")":"")); });
@@ -356,7 +415,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
 <script>
 "use strict";
 const KEY = "ma-cave-v1";
-const APP_VERSION = "1.4.0";
+const APP_VERSION = "1.6.0";
 const isStandalone = () => window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
 const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
 function showInstallHint(){ if(isStandalone() || !isIOS() || !location.protocol.startsWith("http")) return false; try{ return !localStorage.getItem(KEY+"-hint"); }catch(e){ return true; } }
@@ -588,7 +647,8 @@ function adjust(id, delta, motif, note, fromAddr){
   const w = db.wines.find(x=>x.id===id); if(!w) return;
   const before = +w.quantite||0, after = Math.max(0, before+delta);
   if(after===before) return;
-  if(delta<0 && fromAddr) removeAt(fromAddr, w.id, -delta);
+  if(delta<0 && fromAddr) removeAt(fromAddr, w.id, -delta, consumeCase && consumeCase.a===fromAddr ? consumeCase.c : undefined);
+  consumeCase = null;
   w.quantite = after;
   trimPlacements(w);
   db.log.unshift({id:uid(), wineId:w.id, nom:w.nom, millesime:w.millesime, date:new Date().toISOString(), delta:after-before, motif, note:note||""});
@@ -1277,6 +1337,10 @@ function defaultCfg(){
 function ensurePlanData(){
   if(!db.stock || typeof db.stock!=="object") db.stock = {};
   if(!db.cfg || !db.cfg.bin || !db.cfg.mag){ const d = defaultCfg(); db.cfg = {bin:Object.assign(d.bin,(db.cfg&&db.cfg.bin)||{}), mag:Object.assign(d.mag,(db.cfg&&db.cfg.mag)||{})}; }
+  // zone basse : bouteilles libres -> compartiment .1 ; caisses -> taille et identifiant
+  for(let i=1;i<=27;i++){ const b = "V"+i;
+    if(db.cfg.bin[b]==="caisse") (db.stock[b]||[]).forEach(e=>{ if(!e.size) e.size = e.n>6 ? 12 : e.n>3 ? 6 : 3; if(!e.c) e.c = uid(); });
+    else if(db.stock[b]){ db.stock[b].forEach(e=>addAt(b+".1", e.w, e.n)); delete db.stock[b]; } }
   // nettoyage : vins supprimés, quantités dépassées
   const ids = {}; db.wines.forEach(w=>ids[w.id]=w);
   Object.keys(db.stock).forEach(a=>{
@@ -1291,18 +1355,24 @@ function addrInfo(a){
   let m;
   if((m = /^([1-4])-(\d+)-([A-F])$/.exec(a))) return {kind:"exact", zone:"Casier "+m[1], cap:1};
   if((m = /^A-(\d)-(\d)$/.exec(a))) return {kind:"exact", zone:"Au-dessus de l'arche", cap:1};
-  if((m = /^(E[12])-(\d)(?:-([GD]))?$/.exec(a))) return {kind:"exact", zone:"Magnums "+m[1], cap:1, magnum:true, caisse:!m[3]};
+  if((m = /^(E[12])-(\d)(?:-([GD]))?$/.exec(a))){
+    if(!m[3] && db.cfg.mag[a]==="libre") return {kind:"libre", zone:"Magnums "+m[1], cap:Infinity, magnum:true};
+    return {kind:"exact", zone:"Magnums "+m[1], cap:1, magnum:true, caisse:!m[3]}; }
   if((m = /^P(\d+)$/.exec(a))) return {kind:"exact", zone:"Présentoir", cap:1};
-  if((m = /^V(\d+)$/.exec(a))){ const mode = db.cfg.bin[a]||"diag"; const e = stockAt(a)[0];
-    return {kind: mode==="caisse" ? "caisse" : "diag", zone:"Zone basse", cap: mode==="caisse" ? (e&&e.size ? e.size : 12) : DIAG_CAP}; }
+  if((m = /^V(\d+)\.([12])$/.exec(a))) return {kind:"cmp", zone:"Zone basse", bin:"V"+m[1], part:m[2], cap:DIAG_CAP};
+  if((m = /^V(\d+)$/.exec(a))){ const mode = db.cfg.bin[a]||"diag";
+    if(mode==="caisse") return {kind:"caisse", zone:"Zone basse", cap: stockAt(a).reduce((t,e)=>t+(e.size||6),0)};
+    return {kind:"diag", zone:"Zone basse", cap:DIAG_CAP}; }
   if(a==="N") return {kind:"niche", zone:"Niche", cap:Infinity};
   return {kind:"?", zone:"?", cap:0};
 }
 function addrLabel(a){
   const i = addrInfo(a);
-  if(i.kind==="diag") return `Bac ${a} · diagonale`;
-  if(i.kind==="caisse") return `Bac ${a} · caisse`;
+  if(i.kind==="cmp") return `Bac ${i.bin} · ${i.part==="1"?"haut":"bas"} (${a})`;
+  if(i.kind==="diag") return `Bac ${a}`;
+  if(i.kind==="caisse") return `Bac ${a} · caisses`;
   if(i.kind==="niche") return "Niche";
+  if(i.kind==="libre") return `${a} · libre`;
   if(i.magnum && i.caisse) return `${a} · magnum en caisse`;
   return a;
 }
@@ -1310,16 +1380,39 @@ function allExact(){
   const out = [];
   for(let c=1;c<=4;c++) for(let r=1;r<=10;r++) for(let k=0;k<6;k++) out.push(`${c}-${r}-${RCOLS[k]}`);
   for(let r=1;r<=2;r++) for(let c=1;c<=8;c++) out.push(`A-${r}-${c}`);
-  ["E1","E2"].forEach(e=>{ for(let l=1;l<=6;l++){ if(db.cfg.mag[`${e}-${l}`]==="caisse") out.push(`${e}-${l}`); else out.push(`${e}-${l}-G`, `${e}-${l}-D`); } });
+  ["E1","E2"].forEach(e=>{ for(let l=1;l<=6;l++){ const md = db.cfg.mag[`${e}-${l}`]; if(md==="caisse") out.push(`${e}-${l}`); else if(md!=="libre") out.push(`${e}-${l}-G`, `${e}-${l}-D`); } });
   for(let p=1;p<=34;p++) out.push("P"+p);
   return out;
+}
+
+/* --- volumes (niveaux Libre) --- */
+const LEVEL_CL = 300;
+function volCl(w){
+  const t = String((w && w.contenance) || "").toLowerCase().replace(",", ".");
+  const m = /(\d+(?:\.\d+)?)\s*(ml|cl|l|litres?)?/.exec(t);
+  if(m){ let v = parseFloat(m[1]); const u = m[2] || "cl"; if(u==="ml") v /= 10; else if(u!=="cl") v *= 100; if(v>0) return v; }
+  return /magnum/.test(t) ? 150 : 75;
+}
+const volAt = a => stockAt(a).reduce((t,e)=>t + e.n*volCl(wineById(e.w)), 0);
+const fmtCl = v => (Math.round(v*10)/10).toString().replace(".", ",") + " cl";
+function bottleIcon(w, cls){
+  const v = volCl(w), wd = Math.round(Math.max(20, Math.min(64, 14 + v*0.3))), ht = Math.round(Math.max(10, Math.min(20, 8 + v*0.08)));
+  const c = planColor(w);
+  return `<span class="lb ${cls||""}" style="width:${wd}px"><i style="height:${ht}px;background:${c}"></i><em style="height:${Math.max(5,Math.round(ht/3))}px;background:${c}"></em></span>`;
 }
 
 /* --- stock --- */
 const stockAt = a => db.stock[a] || [];
 const countAt = a => stockAt(a).reduce((s,e)=>s+e.n,0);
-const freeAt = a => { const i = addrInfo(a); return i.cap===Infinity ? Infinity : Math.max(0, i.cap - countAt(a)); };
-function placesOf(wid){ const out = []; Object.keys(db.stock).forEach(a=>stockAt(a).forEach(e=>{ if(e.w===wid) out.push({a:a, n:e.n}); })); return out.sort((x,y)=>x.a.localeCompare(y.a,"fr",{numeric:true})); }
+const binCount = b => countAt(b) + countAt(b+".1") + countAt(b+".2");
+const freeAt = a => { const i = addrInfo(a);
+  if(i.kind==="cmp") return Math.max(0, DIAG_CAP - binCount(i.bin));
+  if(i.kind==="diag") return Math.max(0, DIAG_CAP - binCount(a));
+  if(i.kind==="caisse") return Infinity;
+  return i.cap===Infinity ? Infinity : Math.max(0, i.cap - countAt(a)); };
+function placesOf(wid){
+  const m = {}; Object.keys(db.stock).forEach(a=>stockAt(a).forEach(e=>{ if(e.w===wid) m[a] = (m[a]||0) + e.n; }));
+  return Object.keys(m).map(a=>({a:a, n:m[a]})).sort((x,y)=>x.a.localeCompare(y.a,"fr",{numeric:true})); }
 const placedOf = wid => placesOf(wid).reduce((s,p)=>s+p.n,0);
 const unplacedOf = w => Math.max(0, (+w.quantite||0) - placedOf(w.id));
 function addAt(a, wid, n, size){
@@ -1327,13 +1420,22 @@ function addAt(a, wid, n, size){
   const e = list.find(x=>x.w===wid);
   if(e) e.n += n; else list.push(size ? {w:wid, n:n, size:size} : {w:wid, n:n});
 }
-function removeAt(a, wid, n){
+// Retire n bouteilles d'un vin à une adresse (dans une caisse précise si cid est donné ; sinon la moins remplie d'abord).
+function removeAt(a, wid, n, cid){
   const list = db.stock[a]; if(!list) return 0;
-  const e = list.find(x=>x.w===wid); if(!e) return 0;
-  const k = Math.min(n, e.n); e.n -= k;
-  if(e.n<=0) db.stock[a] = list.filter(x=>x!==e);
+  let left = n, k = 0;
+  list.filter(x=>x.w===wid && (!cid || x.c===cid)).sort((x,y)=>x.n-y.n).forEach(e=>{ if(left<=0) return; const d = Math.min(left, e.n); e.n -= d; left -= d; k += d; });
+  db.stock[a] = list.filter(x=>x.n>0);
   if(!db.stock[a].length) delete db.stock[a];
   return k;
+}
+const sizeFor = n => n<=3 ? 3 : n<=6 ? 6 : 12;
+// Bac en mode caisses : complète d'abord les caisses entamées du même vin, puis crée de nouvelles caisses.
+function fillCaisse(b, wid, k, opts){
+  const list = db.stock[b] || (db.stock[b] = []);
+  if(!opts.newCase) list.filter(e=>e.w===wid && e.n<(e.size||6)).forEach(e=>{ const d = Math.min(k, (e.size||6) - e.n); e.n += d; k -= d; });
+  let first = !!opts.newCase;
+  while(k>0){ const sz = first ? (opts.size||6) : sizeFor(k), d = Math.min(k, sz); list.push({w:wid, n:d, size:sz, c:uid()}); k -= d; first = false; }
 }
 // Retire les bouteilles rangées en trop si la quantité a baissé (d'abord les bacs et la niche, puis les places exactes).
 function trimPlacements(w){
@@ -1354,6 +1456,7 @@ function capacityInfo(){
   let cap = allExact().length, used = 0;
   Object.keys(db.stock).forEach(a=>used += countAt(a));
   for(let i=1;i<=27;i++) cap += addrInfo("V"+i).cap;
+  ["E1","E2"].forEach(e=>{ for(let l=1;l<=6;l++) if(db.cfg.mag[`${e}-${l}`]==="libre") cap += 4; });
   return {cap:cap, used:used};
 }
 // Ajoute des bouteilles à la cave (achat) sans passer par le rendu.
@@ -1363,14 +1466,16 @@ function incQty(w, n, motif){
 }
 // Range n bouteilles d'un vin à une adresse ; augmente la quantité si toutes sont déjà rangées.
 function placeAt(a, wid, n, opts){
+  opts = opts || {};
   const w = db.wines.find(x=>x.id===wid); if(!w) return 0;
-  const info = addrInfo(a);
-  if(info.kind==="caisse" && stockAt(a).length && stockAt(a)[0].w!==wid){ toast("Ce bac contient déjà une autre caisse"); return 0; }
-  let k = Math.min(n, freeAt(a)); if(k<=0){ toast("Plus de place ici"); return 0; }
+  let info = addrInfo(a);
+  if(info.kind==="diag"){ a = a + "." + (opts.part || "1"); info = addrInfo(a); }
+  let k = Math.min(n, freeAt(a));
+  if(k<=0){ if(!opts.quiet) toast(info.kind==="cmp" ? "Ce bac est plein (12 bouteilles)" : "Plus de place ici"); return 0; }
   const un = unplacedOf(w);
-  if(un < k){ if(opts && opts.buy) incQty(w, k-un, "Ajout"); else k = un; }
+  if(un < k){ if(opts.buy) incQty(w, k-un, "Ajout"); else k = un; }
   if(k<=0) return 0;
-  addAt(a, wid, k, info.kind==="caisse" && !stockAt(a).length ? ((opts&&opts.size)||6) : 0);
+  if(info.kind==="caisse") fillCaisse(a, wid, k, opts); else addAt(a, wid, k);
   return k;
 }
 
@@ -1406,15 +1511,22 @@ function magHTML(e){
   for(let l=1;l<=6;l++){
     const key = `${e}-${l}`, mode = db.cfg.mag[key];
     let body;
-    if(mode==="caisse"){
+    if(mode==="libre"){
+      const list = stockAt(key), cnt = countAt(key); n += cnt;
+      const cls = ["lv", (ui.sel===key||ui.pop===key)?"on":"", ui.pm?"fr":""];
+      if(ui.q && ui.q.trim()) cls.push(list.some(x=>matchQ(wineById(x.w))) ? "hit" : "dim");
+      const icons = list.map(x=>{ const w = wineById(x.w); let h = ""; for(let i=0;i<Math.min(x.n,8);i++) h += bottleIcon(w); return h; }).join("");
+      body = `<span class="${cls.join(" ")}" data-a="${key}">${icons || '<span class="lvv">libre · vide</span>'}<b>${cnt ? cnt+" btl · "+fmtCl(volAt(key)) : ""}</b></span>`;
+    } else if(mode==="caisse"){
       const s = stockAt(key)[0], w = s && wineById(s.w); n += s ? 1 : 0; cap += 1;
       body = `<span class="mgc ${slotCls(key)}" data-a="${key}">${w ? esc(w.nom)+(w.millesime?" "+w.millesime:"") : "caisse vide"}<small>1 magnum en caisse</small></span>`;
     } else {
       body = ["G","D"].map(s=>{ const a = `${key}-${s}`; n += countAt(a); cap += 1; return `<span class="mgp ${s==="D"?"r":""} ${slotCls(a)}" data-a="${a}"><i style="${slotStyle(a)}"></i><em style="${slotStyle(a)}"></em></span>`; }).join("");
     }
-    lv += `<div class="mgl"><span class="rn lvbtn" data-lvl="${key}">${l}</span>${body}</div>`;
+    const tag = mode==="libre" ? "≡" : mode==="caisse" ? "📦" : "2";
+    lv += `<div class="mgl"><span class="rn lvbtn ${ui.sel===key&&ui.selLvl?"lvsel":""}" data-lvl="${key}">${l}</span>${body}<span class="mtag t-${mode==="libre"?"libre":"x"}" data-lvl="${key}">${tag}</span></div>`;
   }
-  return `<div class="pz mz"><div class="pzh"><b>Magnums ${e}</b><span>${n}/${cap}</span></div>${lv}</div>`;
+  return `<div class="pz mz"><div class="pzh"><b>Magnums ${e}</b><span>${n} btl</span></div>${lv}</div>`;
 }
 function presHTML(a0, a1){
   let n = 0, h = "";
@@ -1427,24 +1539,43 @@ function aboveHTML(){
   for(let r=1;r<=2;r++) rows += `<div class="rr r8"><span class="rn">${r}</span>` + [1,2,3,4,5,6,7,8].map(c=>{ const a = `A-${r}-${c}`; n += countAt(a); return `<span class="sl ${slotCls(a)}" data-a="${a}" style="${slotStyle(a)}"></span>`; }).join("") + `</div>`;
   return `<div class="pz"><div class="pzh"><b>Au-dessus de l'arche</b><span>${n}/16</span></div><div class="rr r8 hd"><span class="rn"></span>${[1,2,3,4,5,6,7,8].map(c=>`<span class="cl">${c}</span>`).join("")}</div>${rows}</div>`;
 }
+// positions des bouteilles dans les deux compartiments (en %), du coin vers la diagonale
+const TRI_POS = (function(){
+  const xs = [10,22,34,46,58,70,82,92], ys = [16,33,50,67,84], up = [], lo = [];
+  ys.forEach(y=>xs.forEach(x=>{ if(x+y<=80) up.push([x,y]); if(x+y>=120) lo.push([x,y]); }));
+  up.sort((p,q)=>(p[0]+p[1])-(q[0]+q[1])); lo.sort((p,q)=>(q[0]+q[1])-(p[0]+p[1]));
+  return {"1":up, "2":lo};
+})();
 function binHTML(i){
-  const a = "V"+i, info = addrInfo(a), list = stockAt(a), n = countAt(a);
-  const cls = ["bin", info.kind, (ui.sel===a||ui.pop===a)?"on":"", ui.pm && freeAt(a)>0 ? "fr":""];
-  if(ui.q && ui.q.trim()){ cls.push(list.some(e=>matchQ(wineById(e.w))) ? "hit" : "dim"); }
-  let inner;
-  if(info.kind==="caisse"){
-    const w = list[0] && wineById(list[0].w);
-    inner = w ? `<span class="bw" style="border-left:4px solid ${planColor(w)}">${esc(w.nom)}${w.millesime?" "+w.millesime:""}</span><span class="bn">${n}/${info.cap}</span>` : `<span class="bv">caisse · vide</span>`;
-  } else {
-    const bar = list.map(e=>`<i style="flex:${e.n};background:${planColor(wineById(e.w))}"></i>`).join("") + (DIAG_CAP-n>0 ? `<i style="flex:${DIAG_CAP-n}" class="em"></i>` : "");
-    inner = `<span class="bbar">${bar}</span><span class="bn">${n}/${DIAG_CAP}</span>`;
+  const b = "V"+i, mode = db.cfg.bin[b]||"diag";
+  const all = mode==="caisse" ? stockAt(b) : stockAt(b+".1").concat(stockAt(b+".2"));
+  const cls = ["vb", mode==="caisse"?"k":"d", (ui.sel===b||ui.pop===b)?"on":""];
+  if(ui.pm && (mode==="caisse" || freeAt(b)>0)) cls.push("fr");
+  if(ui.q && ui.q.trim()) cls.push(all.some(e=>matchQ(wineById(e.w))) ? "hit" : "dim");
+  if(mode==="caisse"){
+    const list = stockAt(b), tot = countAt(b);
+    let inner = list.slice(0,2).map(e=>{ const w = wineById(e.w);
+      return `<div class="kb"><b>${esc(w.nom)}${w.millesime?" "+esc(w.millesime):""}</b><small><span class="dot" style="background:${planColor(w)}"></span>${e.n}/${e.size||6} btl</small></div>`; }).join("");
+    if(list.length>2) inner += `<div class="kmore">+ ${list.length-2} caisse${list.length>3?"s":""}</div>`;
+    if(!list.length) inner = `<div class="ce">vide · caisses</div>`;
+    return `<div class="${cls.join(" ")}" data-a="${b}"><div class="vh"><b>${b}</b><span>${list.length ? list.length+" 📦 · "+tot+" btl" : "0 btl"}</span></div><div class="stack">${inner}</div></div>`;
   }
-  return `<div class="${cls.join(" ")}" data-a="${a}"><b>${a}</b>${inner}</div>`;
+  let dots = "";
+  ["1","2"].forEach(p=>{ const pos = TRI_POS[p]; let j = 0;
+    stockAt(b+"."+p).forEach(e=>{ const c = planColor(wineById(e.w)); for(let k=0;k<e.n && j<pos.length;k++,j++) dots += `<i style="left:${pos[j][0]}%;top:${pos[j][1]}%;background:${c}"></i>`; }); });
+  return `<div class="${cls.join(" ")}" data-a="${b}"><div class="vh"><b>${b}</b><span>${binCount(b)}/${DIAG_CAP}</span></div>
+    <div class="tri"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon data-c="${b}.1" points="0,0 100,0 0,100"/><polygon data-c="${b}.2" points="100,0 100,100 0,100"/><line x1="0" y1="100" x2="100" y2="0"/></svg>${dots}</div>
+    <div class="tc"><span>.1 · ${countAt(b+".1")}</span><span>.2 · ${countAt(b+".2")}</span></div></div>`;
 }
 function binsGroup(title, key){
   const rows = BIN_ROWS[key];
   return `<div class="pz"><div class="pzh"><b>${title}</b><span>${rows[0][0]===13?"V13 – V15":(key==="gauche"?"V1 – V12":"V16 – V27")}</span></div>
-    <div class="bins" style="grid-template-columns:repeat(${rows[0].length},1fr)">${rows.map(r=>r.map(binHTML).join("")).join("")}</div></div>`;
+    <div class="bins2" style="grid-template-columns:repeat(${rows[0].length},minmax(0,1fr))">${rows.map(r=>r.map(binHTML).join("")).join("")}</div></div>`;
+}
+function binLoc(b){
+  const i = +b.slice(1); let side = "", lvl = 0;
+  ["gauche","arche","droite"].forEach(k=>BIN_ROWS[k].forEach((r,ri)=>{ if(r.indexOf(i)>=0){ side = k==="arche" ? "sous l'arche" : k; lvl = ri+1; } }));
+  return `Zone basse · ${side} · niveau ${lvl}`;
 }
 function nicheHTML(){
   const list = stockAt("N"), n = countAt("N");
@@ -1455,8 +1586,8 @@ function sectionHTML(s){
   if(s==="gauche") return `<div class="wing3">${rackHTML(1)}${magHTML("E1")}${rackHTML(2)}</div>${presHTML(1,17)}`;
   if(s==="droite") return `<div class="wing3">${rackHTML(3)}${magHTML("E2")}${rackHTML(4)}</div>${presHTML(18,34)}`;
   if(s==="arche") return `<div class="arch2">${aboveHTML()}${nicheHTML()}</div>`;
-  if(s==="basse") return `<div class="low3">${binsGroup("Gauche","gauche")}${binsGroup("Arche","arche")}${binsGroup("Droite","droite")}</div>
-    <div class="lgz2"><span><i class="ld2"></i>Diagonale : bouteilles seules, 12 par bac</span><span><i class="lc2"></i>Caisse : une caisse entière d'un même vin</span></div>`;
+  if(s==="basse") return `<div class="lgz3"><span><span class="mt d">⟋</span>Bouteilles libres : étagère diagonale, 2 compartiments (ex. V1.1 en haut, V1.2 en bas), 12 bouteilles max</span><span><span class="mt k">📦</span>Caisses : autant de caisses que voulu, de 3, 6 ou 12 bouteilles, vins différents possibles</span></div>
+    <div class="low3">${binsGroup("Gauche","gauche")}${binsGroup("Arche","arche")}${binsGroup("Droite","droite")}</div>`;
   // vue d'ensemble : toutes les sections en réduction, touchez-en une pour l'ouvrir
   const box = (k, t, html) => `<div class="ovb" data-go="${k}"><div class="ovt">${t}</div><div class="ovz">${html}</div></div>`;
   return `<div class="ov3">${box("gauche","Aile gauche",sectionHTML("gauche"))}${box("arche","Arche",sectionHTML("arche"))}${box("droite","Aile droite",sectionHTML("droite"))}</div>${box("basse","Zone basse",sectionHTML("basse"))}`;
@@ -1516,12 +1647,28 @@ function panelHTML(){
       <p class="m" style="margin-top:14px">Touchez une place, un bac ou un niveau de magnums pour le détail.</p>`;
   }
   // niveau de magnums : réglage
-  if(/^E[12]-\d$/.test(a) && ui.selLvl){
+  if(/^E[12]-\d$/.test(a) && (ui.selLvl || db.cfg.mag[a]==="libre")){
     const mode = db.cfg.mag[a], empty = !(stockAt(a).length || stockAt(a+"-G").length || stockAt(a+"-D").length);
-    return `<h3>Magnums ${a.split("-")[0]} · niveau ${a.split("-")[1]}</h3>
-      <div class="seg wfull2"><button class="${mode==="2"?"on":""}" data-act="magmode" data-v="2" ${empty?"":"disabled"}>2 magnums sans caisse</button><button class="${mode==="caisse"?"on":""}" data-act="magmode" data-v="caisse" ${empty?"":"disabled"}>1 magnum en caisse</button></div>
-      <p class="m">${empty?"Choisissez l'usage de ce niveau.":"Videz le niveau pour changer son réglage."}</p>`;
+    const opt = (v, ic, t, sub) => `<button class="${mode===v?"on":""}" data-act="magmode" data-v="${v}" ${empty||mode===v?"":"disabled"}><span class="ic">${ic}</span><b>${t}</b><small>${sub}</small></button>`;
+    let h = `<h3>Magnums ${a.split("-")[0]} · niveau ${a.split("-")[1]}</h3><div class="ph" style="margin-top:4px">Usage de ce niveau</div>
+      <div class="mopt">${opt("2","▭▭","2 magnums","sans caisse · places G et D")}${opt("caisse","📦","1 magnum","dans sa caisse")}${opt("libre","≡","Libre","bouteilles au choix")}</div>
+      ${empty?"":`<p class="m" style="margin:-4px 0 10px">Le mode ne peut changer que si le niveau est vide.</p>`}`;
+    if(mode!=="libre") return h + `<p class="m">Touchez une place du niveau pour y ranger un vin.</p>`;
+    const vol = volAt(a), list = stockAt(a);
+    h += `<div class="capl"><span>Remplissage</span><b>${fmtCl(vol).replace(" cl","")} / ${LEVEL_CL} cl</b></div><div class="capbar"><i style="width:${Math.min(100, vol/LEVEL_CL*100)}%"></i></div>
+      <p class="m" style="margin:2px 0 10px">Repère : un niveau accueille 2 magnums, soit ${LEVEL_CL} cl.</p>`;
+    if(list.length) h += `<div class="ph">Contenu</div>` + list.map(e=>{ const w = wineById(e.w);
+      return `<div class="fr2"><span class="dot" style="background:${colOf(w.couleur).c}"></span><div style="flex:1;min-width:0"><b>${esc(w.nom)}</b> ${esc(w.millesime||"")}<div class="m">${fmtCl(volCl(w))}${status(w).l?" · "+status(w).l:""}</div></div>
+        <span class="qty" style="padding:0"><button data-act="binout" data-w="${w.id}" aria-label="Sortir une bouteille">−</button><b>${e.n}</b><button data-act="binin" data-w="${w.id}" aria-label="Ranger une bouteille de plus">+</button></span></div>`; }).join("");
+    const un = db.wines.filter(w=>unplacedOf(w)>0), oth = db.wines.filter(w=>!unplacedOf(w));
+    const label = w => `${esc(w.nom)} ${esc(w.millesime||"")} · ${fmtCl(volCl(w))}`;
+    if(db.wines.length) h += `<div class="ph">Ajouter des bouteilles</div>
+      <div class="row3"><select class="f" id="lvW">${un.length?`<optgroup label="Non rangées">${un.map(w=>`<option value="${w.id}">${label(w)} (${unplacedOf(w)})</option>`).join("")}</optgroup>`:""}${oth.length?`<optgroup label="Autres vins (ajoute à la cave)">${oth.map(w=>`<option value="${w.id}">${label(w)}</option>`).join("")}</optgroup>`:""}</select>
+      <span class="qty" style="padding:0"><button data-act="lvq" data-v="-1">−</button><b id="lvN">${ui.lvq||1}</b><button data-act="lvq" data-v="1">+</button></span></div>
+      <button class="btn wfull" data-act="lvput">＋ Ranger sur ce niveau</button>`;
+    return h + `<button class="btn ghost wfull" data-act="newwine">＋ Nouveau vin</button>`;
   }
+  if(/^V\d+$/.test(a)) return binPanel(a);
   const info = addrInfo(a), list = stockAt(a);
   // bacs
   if(info.kind==="diag" || info.kind==="caisse" || info.kind==="niche"){
@@ -1549,6 +1696,47 @@ function panelHTML(){
   return `<h3>Place libre ${a}</h3><p class="m">${info.magnum?"Place pour un magnum (150 cl).":"Choisissez le vin à ranger ici."}</p>${wineChooser(a)}`;
 }
 
+function binWineSelect(){
+  const un = db.wines.filter(w=>unplacedOf(w)>0), oth = db.wines.filter(w=>!unplacedOf(w));
+  const lab = w => `${esc(w.nom)} ${esc(w.millesime||"")}`;
+  return `<select class="f" id="bW">${un.length?`<optgroup label="Non rangées">${un.map(w=>`<option value="${w.id}">${lab(w)} · ${unplacedOf(w)} non rangée${unplacedOf(w)>1?"s":""}</option>`).join("")}</optgroup>`:""}${oth.length?`<optgroup label="Autres vins (ajoute à la cave)">${oth.map(w=>`<option value="${w.id}">${lab(w)}</option>`).join("")}</optgroup>`:""}</select>`;
+}
+function binPanel(b){
+  const mode = db.cfg.bin[b]||"diag", n = binCount(b);
+  const opt = (v, ic, t, sub) => `<button class="${mode===v?"on":""}" data-act="binmode" data-v="${v}" ${n && mode!==v ? "disabled" : ""}><span class="ic">${ic}</span><b>${t}</b><small>${sub}</small></button>`;
+  let left = `<h3>Bac ${b}</h3><p class="m" style="margin:0 0 8px">${binLoc(b)}</p><div class="ph" style="margin-top:4px">Usage de ce bac</div>
+    <div class="mopt two">${opt("diag","⟋","Bouteilles libres","étagère diagonale · 12 max")}${opt("caisse","📦","Caisses","3, 6 ou 12 bouteilles")}</div>
+    ${n ? `<p class="m" style="margin:-4px 0 10px">Le mode ne peut changer que si le bac est vide.</p>` : ""}`;
+  let right = "";
+  const hasW = db.wines.length > 0;
+  if(mode!=="caisse"){
+    left += `<div class="capl"><span>Remplissage</span><b>${n} / ${DIAG_CAP} bouteilles</b></div><div class="capbar"><i style="width:${n/DIAG_CAP*100}%"></i></div>`;
+    ["1","2"].forEach(p=>{ const k = b+"."+p, list = stockAt(k);
+      left += `<div class="cmp"><div class="cmph"><span class="mini-tri ${p==="1"?"up":"lo"}"></span><b>${k}</b><span class="m">${p==="1"?"au-dessus de la diagonale":"sous la diagonale"}</span><em>${countAt(k)}</em></div>
+        ${list.map(e=>{ const w = wineById(e.w);
+          return `<div class="fr2"><span class="dot" style="background:${colOf(w.couleur).c}"></span><div style="flex:1;min-width:0"><b>${esc(w.nom)}</b> ${esc(w.millesime||"")}</div>
+            <span class="qty" style="padding:0"><button data-act="cout" data-w="${w.id}" data-k="${k}" aria-label="Sortir une bouteille">−</button><b>${e.n}</b><button data-act="cin" data-w="${w.id}" data-k="${k}" aria-label="Ranger une bouteille de plus" ${n>=DIAG_CAP?"disabled style='opacity:.35'":""}>+</button></span></div>`; }).join("") || `<div class="m" style="padding:6px 0">Vide</div>`}</div>`; });
+    const free = DIAG_CAP - n;
+    right = `<div class="ph" style="margin-top:0">Ajouter des bouteilles</div>
+      <div class="seg wfull2" style="margin-bottom:8px"><button class="${ui.cmp!=="2"?"on":""}" data-act="cmp" data-v="1">${b}.1 (haut)</button><button class="${ui.cmp==="2"?"on":""}" data-act="cmp" data-v="2">${b}.2 (bas)</button></div>
+      ${free<=0 ? `<p class="m">Bac plein (12 bouteilles).</p>` : hasW ? `<div class="row3">${binWineSelect()}<span class="qty" style="padding:0"><button data-act="bq" data-v="-1">−</button><b id="bN">${Math.min(ui.bq||1, free)}</b><button data-act="bq" data-v="1">+</button></span></div>
+      <button class="btn wfull" data-act="bput">＋ Ranger · ${free} place${free>1?"s":""} libre${free>1?"s":""}</button>` : ""}`;
+  } else {
+    const list = stockAt(b);
+    left += `<div class="ph">Caisses dans ce bac</div>` + (list.map(e=>{ const w = wineById(e.w), sz = e.size||6;
+      return `<div class="kc"><div class="kch"><span class="dot" style="background:${colOf(w.couleur).c}"></span><b>${esc(w.nom)} ${esc(w.millesime||"")}</b><span class="badge">caisse de ${sz}</span></div>
+        <div class="kcb"><div class="fillk"><i style="width:${e.n/sz*100}%;background:${colOf(w.couleur).c}"></i></div>
+        <span class="qty" style="padding:0"><button data-act="kout" data-w="${w.id}" data-c="${e.c}" aria-label="Sortir une bouteille">−</button><b>${e.n}</b><button data-act="kin" data-w="${w.id}" data-c="${e.c}" aria-label="Remettre une bouteille" ${e.n>=sz?"disabled style='opacity:.35'":""}>+</button></span></div></div>`; }).join("") || `<p class="m">Aucune caisse dans ce bac.</p>`);
+    right = `<div class="ph" style="margin-top:0">Ajouter une caisse</div>
+      <div class="seg wfull2" style="margin-bottom:8px">${[3,6,12].map(z=>`<button class="${(ui.csize||6)===z?"on":""}" data-act="csize" data-v="${z}">${z} btl</button>`).join("")}</div>
+      ${hasW ? `<div class="row3">${binWineSelect()}</div><button class="btn wfull" data-act="kadd">📦 Ajouter la caisse dans ${b}</button>` : ""}
+      <p class="m" style="margin-top:8px">Chaque caisse contient un seul vin ; un bac peut contenir des caisses de vins différents. Ouvrir une bouteille la retire de sa caisse.</p>`;
+  }
+  right += `<button class="btn ghost wfull" data-act="newwine">＋ Nouveau vin</button>`;
+  return `<div class="pcols"><div>${left}</div><div>${right}</div></div>`;
+}
+let consumeCase = null;
+
 /* --- vue Plan --- */
 function renderPlan(){
   if(!ui.ps) ui.ps = "gauche";
@@ -1565,7 +1753,7 @@ function renderPlan(){
     <div class="plg">${legend}</div>
   </div>
   ${pmBar}
-  <div class="pwrap"><div class="pmain sec-${ui.ps}">${sectionHTML(ui.ps)}</div><div class="panel pside">${panelHTML()}</div></div>`;
+  <div class="pwrap${ui.ps==="basse"?" below":""}"><div class="pmain sec-${ui.ps}">${sectionHTML(ui.ps)}</div><div class="panel pside">${panelHTML()}</div></div>`;
   bindPlan();
   if(ui.pop) showPop(ui.pop); else hidePop(true);
 }
@@ -1581,7 +1769,9 @@ function bindPlan(){
   const main = document.querySelector(".pmain");
   if(main && ui.ps!=="tout") main.onclick = e=>{
     const lv = e.target.closest("[data-lvl]");
-    if(lv){ ui.pop = null; ui.sel = lv.dataset.lvl; ui.selLvl = true; renderPlan(); return; }
+    if(lv){ ui.pop = null; ui.sel = lv.dataset.lvl; ui.selLvl = true; ui.lvq = 1; renderPlan(); return; }
+    const cp = e.target.closest("[data-c]");
+    if(ui.pm && cp) return onAddr(cp.getAttribute("data-c"));
     const t = e.target.closest("[data-a]"); if(!t) return;
     onAddr(t.dataset.a);
   };
@@ -1595,14 +1785,17 @@ function onAddr(a){
     const w = wineById(ui.pm.w); if(!w){ ui.pm = null; return renderPlan(); }
     if(ui.pm.kind==="move"){
       if(a===ui.pm.from){ ui.pm = null; return renderPlan(); }
+      if(addrInfo(a).kind==="diag") a = a + ".1";
       const info = addrInfo(a);
-      if(freeAt(a)<=0 || (info.kind==="caisse" && stockAt(a).length && stockAt(a)[0].w!==w.id)){ toast("Cette place n'est pas libre"); return; }
-      removeAt(ui.pm.from, w.id, 1); addAt(a, w.id, 1, info.kind==="caisse" && !stockAt(a).length ? 6 : 0);
+      if(a===ui.pm.from){ ui.pm = null; return renderPlan(); }
+      if(freeAt(a)<=0){ toast("Cette place n'est pas libre"); return; }
+      removeAt(ui.pm.from, w.id, 1);
+      if(info.kind==="caisse") fillCaisse(a, w.id, 1, {}); else addAt(a, w.id, 1);
       ui.pm = null; ui.sel = a; return commit(`Déplacé vers ${a}`);
     }
     const left = unplacedOf(w);
     if(left<=0){ ui.pm = null; return commit("Toutes les bouteilles sont rangées"); }
-    const k = placeAt(a, w.id, addrInfo(a).kind==="exact" ? 1 : left, {size: left>=12 ? 12 : 6});
+    const k = placeAt(a, w.id, addrInfo(a).kind==="exact" ? 1 : left, {});
     if(!k) return;
     if(unplacedOf(w)<=0){ ui.pm = null; ui.sel = null; return commit(`✓ ${w.nom} : toutes les bouteilles sont rangées`); }
     return commit(`${k} rangée${k>1?"s":""} en ${a}`);
@@ -1635,15 +1828,48 @@ function onAct(act, el){
       const ww = wineById(ui.pm.w); let left = unplacedOf(ww), k = 0;
       const sec = ui.ps==="tout" ? "gauche" : ui.ps;
       const inSec = x => sec==="gauche" ? /^[12]-|^P([1-9]|1[0-7])$/.test(x) : sec==="droite" ? /^[34]-|^P(1[89]|2\d|3[0-4])$/.test(x) : sec==="arche" ? /^A-/.test(x) : false;
-      if(sec==="basse"){ for(let i=1;i<=27 && left>0;i++){ const b = "V"+i; if(addrInfo(b).kind==="diag" && freeAt(b)>0 && !stockAt(b).some(e=>e.w!==ww.id) ){ const n = placeAt(b, ww.id, left); k += n; left -= n; } } }
+      if(sec==="basse"){ for(let i=1;i<=27 && left>0;i++){ const b = "V"+i; if(addrInfo(b).kind==="diag" && freeAt(b)>0){ const n = placeAt(b+".1", ww.id, left, {quiet:true}); k += n; left -= n; } } }
       else allExact().filter(inSec).forEach(x=>{ if(left>0 && !stockAt(x).length && !addrInfo(x).magnum){ addAt(x, ww.id, 1); k++; left--; } });
       if(!k){ toast("Aucune place libre dans cette section"); return; }
       if(unplacedOf(ww)<=0) ui.pm = null;
       return commit(`${k} bouteille${k>1?"s":""} placée${k>1?"s":""} automatiquement`);
     }
     case "csize": ui.csize = +el.dataset.v; return renderPlan();
-    case "binmode": if(countAt(a)) return; db.cfg.bin[a] = el.dataset.v; return commit();
-    case "magmode": if(stockAt(a).length || stockAt(a+"-G").length || stockAt(a+"-D").length) return; db.cfg.mag[a] = el.dataset.v; return commit();
+    case "binmode": if(binCount(a)) return; db.cfg.bin[a] = el.dataset.v; return commit();
+    case "cmp": ui.cmp = el.dataset.v; return renderPlan();
+    case "bq": { const free = Math.max(1, freeAt(a)); ui.bq = Math.max(1, Math.min(free, (ui.bq||1) + (+el.dataset.v))); const t = $("#bN"); if(t) t.textContent = ui.bq; return; }
+    case "bput": {
+      const id = ($("#bW")||{}).value, ww = wineById(id); if(!ww) return;
+      const k2 = a + "." + (ui.cmp==="2" ? "2" : "1"), q = Math.min(ui.bq||1, freeAt(k2)), un = unplacedOf(ww);
+      if(q<=0) return toast("Ce bac est plein (12 bouteilles)");
+      if(q>un && !confirm(un ? `${un} bouteille${un>1?"s":""} de « ${ww.nom} » à ranger.\nAjouter ${q-un} bouteille${q-un>1?"s":""} à la cave pour en ranger ${q} ?` : `Toutes les bouteilles de « ${ww.nom} » sont déjà rangées.\nAjouter ${q} bouteille${q>1?"s":""} à la cave et ${q>1?"les":"la"} ranger ici ?`)) return;
+      const k = placeAt(k2, id, q, {buy:true}); ui.bq = 1;
+      return commit(`${k} bouteille${k>1?"s":""} rangée${k>1?"s":""} en ${k2}`);
+    }
+    case "cout": return consume(wid, el.dataset.k);
+    case "cin": { const k = placeAt(el.dataset.k, wid, 1, {buy:true}); if(k) commit(); return; }
+    case "kout": consumeCase = {a:a, c:el.dataset.c}; return consume(wid, a);
+    case "kin": {
+      const e = stockAt(a).find(x=>x.c===el.dataset.c); if(!e || e.n>=(e.size||6)) return;
+      if(unplacedOf(w)<1) incQty(w, 1, "Ajout");
+      e.n += 1; return commit();
+    }
+    case "kadd": {
+      const id = ($("#bW")||{}).value, ww = wineById(id); if(!ww) return;
+      const sz = ui.csize||6, un = unplacedOf(ww), q = un>=sz ? sz : un>0 ? un : sz;
+      if(un<=0 && !confirm(`Toutes les bouteilles de « ${ww.nom} » sont déjà rangées.\nAjouter une caisse de ${sz} bouteilles à la cave ?`)) return;
+      const k = placeAt(a, id, q, {buy:true, newCase:true, size:sz});
+      return commit(`📦 Caisse de ${sz} ajoutée en ${a} · ${k}/${sz} bouteille${k>1?"s":""}`);
+    }
+    case "magmode": if(stockAt(a).length || stockAt(a+"-G").length || stockAt(a+"-D").length) return; db.cfg.mag[a] = el.dataset.v; ui.selLvl = true; return commit();
+    case "lvq": { ui.lvq = Math.max(1, (ui.lvq||1) + (+el.dataset.v)); const b = $("#lvN"); if(b) b.textContent = ui.lvq; return; }
+    case "lvput": {
+      const id = ($("#lvW")||{}).value, ww = wineById(id); if(!ww) return;
+      const q = ui.lvq||1, un = unplacedOf(ww);
+      if(q>un && !confirm(un ? `${un} bouteille${un>1?"s":""} de « ${ww.nom} » à ranger.\nAjouter ${q-un} bouteille${q-un>1?"s":""} à la cave pour en ranger ${q} ?` : `Toutes les bouteilles de « ${ww.nom} » sont déjà rangées.\nAjouter ${q} bouteille${q>1?"s":""} à la cave et ${q>1?"les":"la"} ranger ici ?`)) return;
+      const k = placeAt(a, id, q, {buy:true}); ui.lvq = 1; ui.selLvl = true;
+      return commit(`${k} bouteille${k>1?"s":""} rangée${k>1?"s":""} sur le niveau ${a}`);
+    }
   }
 }
 function startPlacing(wid){ ui.cv = "plan"; ui.pm = {kind:"place", w:wid}; ui.sel = null; try{localStorage.setItem(KEY+"-view","plan");}catch(e){} closeModal(); setView("cave"); }
@@ -1665,9 +1891,10 @@ function addrLong(a){
   if((m = /^([1-4])-(\d+)-([A-F])$/.exec(a))) return `Casier ${m[1]} · Rangée ${m[2]} · ${m[3]}`;
   if((m = /^A-(\d)-(\d)$/.exec(a))) return `Au-dessus de l'arche · Rangée ${m[1]} · ${m[2]}`;
   if((m = /^(E[12])-(\d)-([GD])$/.exec(a))) return `Magnums ${m[1]} · Niveau ${m[2]} · ${m[3]==="G"?"gauche":"droite"}`;
-  if((m = /^(E[12])-(\d)$/.exec(a))) return `Magnums ${m[1]} · Niveau ${m[2]} · caisse`;
+  if((m = /^(E[12])-(\d)$/.exec(a))) return `Magnums ${m[1]} · Niveau ${m[2]} · ${addrInfo(a).kind==="libre"?"libre":"caisse"}`;
   if(/^P\d+$/.test(a)) return `Présentoir · ${a}`;
-  if(/^V\d+$/.test(a)) return `Zone basse · Bac ${a} · ${addrInfo(a).kind==="caisse"?"caisse":"diagonale"}`;
+  if((m = /^(V\d+)\.([12])$/.exec(a))) return `Zone basse · Bac ${m[1]} · compartiment ${m[2]==="1"?"haut":"bas"}`;
+  if(/^V\d+$/.test(a)) return `Zone basse · Bac ${a} · ${addrInfo(a).kind==="caisse"?"caisses":"bouteilles libres"}`;
   if(a==="N") return "Arche · Niche";
   return a;
 }
@@ -1705,6 +1932,31 @@ function popHTML(a){
       ${todo.length?`<div class="ln" style="margin-top:8px">À ranger<b>${esc(todo[0].nom)} ${esc(todo[0].millesime||"")} · ${unplacedOf(todo[0])} btl${todo.length>1?` (+${todo.length-1} vin${todo.length>2?"s":""})`:""}</b></div>`:""}
       <div class="ac two"><button class="btn" data-pa="detail">📍 Ranger un vin ici</button><button class="btn ghost" data-pa="new">＋ Nouveau vin</button></div>`;
   }
+  if(info.kind==="diag" || info.kind==="caisse"){
+    const acts = `<div class="ac two"><button class="btn" data-pa="detail">⚙︎ Ranger / gérer</button><button class="btn ghost" data-pa="new">＋ Nouveau vin</button></div>`;
+    if(info.kind==="caisse"){
+      const tot = countAt(a);
+      const rows = list.map(e=>{ const w = wineById(e.w), sz = e.size||6;
+        return `<div class="ln"><span class="dot" style="background:${colOf(w.couleur).c}"></span><span class="lw">${esc(w.nom)} ${esc(w.millesime||"")} <span class="badge">📦 ${e.n}/${sz}</span></span><button class="mini" data-pa="out" data-w="${w.id}" data-c="${e.c}" aria-label="Sortir une bouteille de ${esc(w.nom)}">🍷 Sortir</button></div>`; }).join("");
+      return head + `<div class="nm">${list.length ? `${list.length} caisse${list.length>1?"s":""} · ${tot} bouteille${tot>1?"s":""}` : "Aucune caisse"}</div>${rows || `<div class="m" style="margin:6px 0">Libre pour des caisses de 3, 6 ou 12 bouteilles</div>`}${acts}`;
+    }
+    const n = binCount(a), parts = ["1","2"].map(p=>({k:a+"."+p, p:p, list:stockAt(a+"."+p)}));
+    const bar = n ? `<div class="fill">${parts.map(x=>x.list.map(e=>`<i style="flex:${e.n};background:${colOf(wineById(e.w).couleur).c}"></i>`).join("")).join("")}${DIAG_CAP-n>0?`<i style="flex:${DIAG_CAP-n}"></i>`:""}</div>` : "";
+    const rows = parts.map(x=>x.list.length ? `<div class="pk2">${x.k} · ${x.p==="1"?"haut":"bas"}</div>` + x.list.map(e=>{ const w = wineById(e.w), st = status(w);
+      return `<div class="ln"><span class="dot" style="background:${colOf(w.couleur).c}"></span><span class="lw">${esc(w.nom)} ${esc(w.millesime||"")}${shortStatus(st)?` <span class="badge ${st.cls}">${shortStatus(st)}</span>`:""}</span><b>${e.n}</b><button class="mini" data-pa="out" data-w="${w.id}" data-from="${x.k}" aria-label="Sortir une bouteille de ${esc(w.nom)}">🍷 Sortir</button></div>`; }).join("") : "").join("");
+    const left = DIAG_CAP - n;
+    return head + `<div class="nm">${n} / ${DIAG_CAP} bouteilles</div>${bar}<div class="m">${left>0 ? left+" place"+(left>1?"s":"")+" libre"+(left>1?"s":"") : "Complet"}</div>${rows}${acts}`;
+  }
+  if(info.kind==="libre"){
+    const n = countAt(a), vol = volAt(a), rest = LEVEL_CL - vol;
+    const bar = `<div class="fill">${list.map(e=>`<i style="flex:${e.n*volCl(wineById(e.w))};background:${colOf(wineById(e.w).couleur).c}"></i>`).join("")}${rest>0?`<i style="flex:${rest}"></i>`:""}</div>`;
+    const ex = rest>=150 ? "par ex. 1 magnum" : rest>=112.5 ? "par ex. 1 × 75 cl + 1 × 37,5 cl" : rest>=75 ? "par ex. 1 × 75 cl" : rest>=37.5 ? "par ex. 1 × 37,5 cl" : "";
+    const rows = list.map(e=>{ const w = wineById(e.w);
+      return `<div class="ln"><span class="dot" style="background:${colOf(w.couleur).c}"></span><span class="lw">${esc(w.nom)} ${esc(w.millesime||"")} <span class="badge">${fmtCl(volCl(w))}</span></span><b>${e.n}</b><button class="mini" data-pa="out" data-w="${w.id}" aria-label="Sortir une bouteille de ${esc(w.nom)}">🍷 Sortir</button></div>`; }).join("");
+    return head + `<div class="nm">${n ? `${n} bouteille${n>1?"s":""} · ` : ""}${fmtCl(vol).replace(" cl","")} / ${LEVEL_CL} cl</div>${bar}
+      <div class="m">${rest>0 ? `Reste ${fmtCl(rest)}${ex?" · "+ex:""}` : "Repère de 300 cl atteint"}</div>${rows}
+      <div class="ac two"><button class="btn" data-pa="detail">${n ? "⚙︎ Ranger / gérer" : "📍 Ranger ici"}</button><button class="btn ghost" data-pa="new">＋ Nouveau vin</button></div>`;
+  }
   const n = countAt(a), niche = info.kind==="niche";
   const title = niche ? `${n} bouteille${n>1?"s":""} en présentation` : `${n} / ${info.cap} bouteilles`;
   const bar = niche || !n ? "" : `<div class="fill">${list.map(e=>`<i style="flex:${e.n};background:${colOf(wineById(e.w).couleur).c}"></i>`).join("")}${info.cap-n>0?`<i style="flex:${info.cap-n}"></i>`:""}</div>`;
@@ -1728,16 +1980,19 @@ function showPop(a){
   if(!below) d.className += " up";
   d.style.left = left + "px"; d.style.top = (top + window.pageYOffset) + "px";
   d.style.setProperty("--ax", Math.max(14, Math.min(W - 30, r.left + r.width/2 - left - 8)) + "px");
-  d.onclick = e=>{ e.stopPropagation(); const b = e.target.closest("[data-pa]"); if(b) onPopAct(b.dataset.pa, b.dataset.w, a); };
+  d.onclick = e=>{ e.stopPropagation(); const b = e.target.closest("[data-pa]"); if(b) onPopAct(b.dataset.pa, b.dataset.w, b.getAttribute("data-from") || a, b.getAttribute("data-c")); };
 }
 function hidePop(keepState){ const d = document.getElementById("cpop"); if(d) d.parentNode.removeChild(d); if(!keepState) ui.pop = null; }
-function onPopAct(act, wid, a){
+function onPopAct(act, wid, a, cid){
   ui.pop = null; hidePop();
   if(act==="close") return renderPlan();
-  if(act==="out") return consume(wid, a);
+  if(act==="out"){ if(cid) consumeCase = {a:a, c:cid}; return consume(wid, a); }
   if(act==="open") return openDetail(wid);
   if(act==="move"){ ui.pm = {kind:"move", w:wid, from:a}; ui.sel = null; return renderPlan(); }
-  if(act==="detail"){ ui.sel = a; ui.selLvl = false; ui.csize = 6; return renderPlan(); }
+  if(act==="detail"){ ui.sel = a; ui.selLvl = addrInfo(a).kind==="libre"; ui.csize = 6; ui.lvq = 1; ui.bq = 1; ui.cmp = "1"; renderPlan();
+    const pn = document.querySelector(".pwrap.below .pside");
+    if(pn) window.scrollTo(0, pn.getBoundingClientRect().top + window.pageYOffset - 140);
+    return; }
   if(act==="new") return openForm(null, null, {placeAt:a});
 }
 document.addEventListener("click", e=>{
@@ -1752,12 +2007,18 @@ function slotCats(){
   const ex = allExact(), free = x=>!stockAt(x).length, cats = [];
   for(let c=1;c<=4;c++) cats.push({k:"c"+c, l:"Casier "+c, list: ex.filter(x=>x.indexOf(c+"-")===0 && free(x)).map(x=>{ const q = x.split("-"); return {a:x, l:q[2]+q[1]}; })});
   cats.push({k:"A", l:"Au-dessus de l'arche", list: ex.filter(x=>/^A-/.test(x) && free(x)).map(x=>{ const q = x.split("-"); return {a:x, l:"Rangée "+q[1]+" · "+q[2]}; })});
-  ["E1","E2"].forEach(e=>cats.push({k:e, l:"Magnums "+e, mag:true, list: ex.filter(x=>x.indexOf(e+"-")===0 && free(x)).map(x=>{ const q = x.split("-"); return {a:x, l:"Niveau "+q[1]+(q[2] ? " · "+(q[2]==="G"?"gauche":"droite") : " · caisse")}; })}));
+  ["E1","E2"].forEach(e=>{
+    const list = [];
+    for(let l=1;l<=6;l++){ const key = `${e}-${l}`, md = db.cfg.mag[key];
+      if(md==="libre") list.push({a:key, l:`Niveau ${l} · libre · ${fmtCl(volAt(key))} / ${LEVEL_CL} cl`});
+      else ex.filter(x=>(x===key || x.indexOf(key+"-")===0) && free(x)).forEach(x=>{ const q = x.split("-"); list.push({a:x, l:"Niveau "+q[1]+(q[2] ? " · "+(q[2]==="G"?"gauche":"droite") : " · caisse")}); });
+    }
+    cats.push({k:e, l:"Magnums "+e, mag:true, list:list}); });
   cats.push({k:"P", l:"Présentoir", list: ex.filter(x=>/^P/.test(x) && free(x)).map(x=>({a:x, l:x}))});
   const bins = [];
-  for(let i=1;i<=27;i++){ const a = "V"+i, inf = addrInfo(a);
-    if(inf.kind==="diag" && freeAt(a)>0) bins.push({a:a, l:`${a} · diagonale · ${freeAt(a)} libre${freeAt(a)>1?"s":""}`});
-    else if(inf.kind==="caisse" && !stockAt(a).length) bins.push({a:a, l:`${a} · caisse vide`}); }
+  for(let i=1;i<=27;i++){ const b = "V"+i, inf = addrInfo(b);
+    if(inf.kind==="caisse") bins.push({a:b, l:`${b} · caisses · nouvelle caisse`});
+    else if(freeAt(b)>0){ const f = freeAt(b); bins.push({a:b+".1", l:`${b}.1 (haut) · ${f} libre${f>1?"s":""}`}); bins.push({a:b+".2", l:`${b}.2 (bas) · ${f} libre${f>1?"s":""}`}); } }
   cats.push({k:"V", l:"Zone basse (bacs)", list:bins});
   cats.push({k:"N", l:"Niche (arche)", list:[{a:"N", l:"Niche · présentation"}]});
   return cats.filter(c=>c.list.length);
@@ -1765,11 +2026,13 @@ function slotCats(){
 function fillPlan(cat, start, n){
   const out = []; if(!cat || n<=0) return out;
   let i0 = 0; cat.list.forEach((x,i)=>{ if(x.a===start) i0 = i; });
-  let left = n;
+  let left = n; const used = {};
   for(const x of cat.list.slice(i0)){
     if(left<=0) break;
     const inf = addrInfo(x.a);
-    const k = inf.kind==="niche" ? left : inf.kind==="caisse" ? Math.min(left, left>=12 ? 12 : 6) : inf.kind==="diag" ? Math.min(left, freeAt(x.a)) : 1;
+    let k;
+    if(inf.kind==="cmp"){ k = Math.min(left, Math.max(0, freeAt(x.a) - (used[inf.bin]||0))); used[inf.bin] = (used[inf.bin]||0) + k; if(!k) continue; }
+    else k = (inf.kind==="niche" || inf.kind==="libre") ? left : inf.kind==="caisse" ? Math.min(left, 12) : inf.kind==="diag" ? Math.min(left, freeAt(x.a)) : 1;
     out.push({a:x.a, l:x.l, n:k}); left -= k;
   }
   return out;
@@ -1781,6 +2044,7 @@ function setupLocField(w, editing, opts){
   cSel.innerHTML = `<option value="">Ne pas ranger maintenant</option>` + cats.map(c=>`<option value="${c.k}">${c.l} · ${c.list.length} libre${c.list.length>1?"s":""}</option>`).join("");
   const isMag = ()=>/150|magnum/i.test($("#f_contenance").value||"");
   let def = "";
+  if(opts.placeAt && /^V\d+$/.test(opts.placeAt) && (db.cfg.bin[opts.placeAt]||"diag")!=="caisse") opts.placeAt += ".1";
   if(opts.placeAt && catOf(opts.placeAt)) def = catOf(opts.placeAt).k;
   else if(toPlace()>0){ const mag = isMag() && cats.find(c=>c.mag), cas = cats.find(c=>/^c\d/.test(c.k)); def = (mag || cas || cats[0] || {}).k || ""; }
   cSel.value = def;
