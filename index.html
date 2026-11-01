@@ -404,7 +404,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
     if(!b){ b=document.createElement("div"); b.id="errbox";
       b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:999;background:#a3281f;color:#fff;padding:14px 16px;border-radius:12px;font:14px/1.45 -apple-system,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.3)";
       document.body.appendChild(b); }
-    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.6.0</span>";
+    b.innerHTML="<b>Ma Cave a rencontré un problème.</b><br>Faites une capture d'écran de ce message et envoyez-la pour qu'il soit corrigé.<br><span style='opacity:.85;font-size:12px'>"+String(msg).replace(/</g,"&lt;")+" · "+osInfo()+" · v1.6.1</span>";
   }
   window.__caveShowError=show;
   window.addEventListener("error",function(e){ show((e.message||"Erreur")+(e.lineno?" (ligne "+e.lineno+")":"")); });
@@ -415,7 +415,7 @@ nav button.due::after{content:"";display:inline-block;width:8px;height:8px;borde
 <script>
 "use strict";
 const KEY = "ma-cave-v1";
-const APP_VERSION = "1.6.0";
+const APP_VERSION = "1.6.1";
 const isStandalone = () => window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
 const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
 function showInstallHint(){ if(isStandalone() || !isIOS() || !location.protocol.startsWith("http")) return false; try{ return !localStorage.getItem(KEY+"-hint"); }catch(e){ return true; } }
@@ -960,9 +960,9 @@ function openForm(id, copyFrom, opts={}){
         <div class="ehint" id="f_ehint"></div></div>
       ${f("dateAchat","Date d'achat","s2","date")}
       <div class="sec">Garde & dégustation</div>
-      ${f("boireDe","À boire à partir de","s2","number",'inputmode="numeric"')}
-      ${f("boireA","À boire jusqu'à","s2","number",'inputmode="numeric"')}
-      <div class="fl s2"><label>Note</label><div class="stars" id="stars">${[1,2,3,4,5].map(i=>`<button type="button" data-s="${i}" class="${i<=(+w.note||0)?"on":""}">★</button>`).join("")}</div></div>
+      ${f("boireDe","À boire à partir de",editing?"s2":"","number",'inputmode="numeric"')}
+      ${f("boireA","À boire jusqu'à",editing?"s2":"","number",'inputmode="numeric"')}
+      ${editing ? `<div class="fl s2"><label>Note</label><div class="stars" id="stars">${[1,2,3,4,5].map(i=>`<button type="button" data-s="${i}" class="${i<=(+w.note||0)?"on":""}">★</button>`).join("")}</div></div>` : ""}
       <div class="fl s6"><label for="f_commentaire">Commentaire / notes de dégustation</label><textarea id="f_commentaire">${esc(w.commentaire||"")}</textarea></div>
       <div class="fl s6"><label>Photo de l'étiquette</label>
         <div class="photo"><div class="pv" id="pv" style="${w.photo?`background-image:url('${w.photo}')`:""}"></div>
@@ -1022,6 +1022,21 @@ function openForm(id, copyFrom, opts={}){
   $("#scanShow") && ($("#scanShow").onclick = ()=>{ $("#scanBody").hidden=false; $("#scanShow").remove(); $("#scanTxt").focus(); });
   if(opts.scan) setTimeout(()=>$("#scanTxt").focus(), 50);
   const getLoc = setupLocField(w, editing, opts);
+  // Région déjà connue : le pays se remplit tout seul (sans écraser un pays saisi à la main)
+  const paysOf = r=>{
+    const k = norm(r); if(!k) return "";
+    const m = {}; db.wines.forEach(x=>{ if(x.pays && norm(x.region)===k) m[x.pays] = (m[x.pays]||0) + 1; });
+    let best = "", bn = 0; Object.keys(m).forEach(p=>{ if(m[p]>bn){ best = p; bn = m[p]; } });
+    if(best) return best;
+    const a = APPS.find(x=>norm(x.region)===k); return a ? a.pays : "";
+  };
+  let paysAuto = false;
+  const onRegion = ()=>{
+    const el = $("#f_pays"), p = paysOf($("#f_region").value);
+    if(p && (!el.value.trim() || paysAuto) && el.value!==p){ el.value = p; paysAuto = true; el.classList.add("auto"); }
+  };
+  $("#f_region").addEventListener("input", onRegion); $("#f_region").addEventListener("change", onRegion);
+  $("#f_pays").addEventListener("input", ()=>{ paysAuto = false; });
   $("#fSave").onclick = ()=>{
     const g = k => ($("#f_"+k).value||"").trim();
     const nom = g("nom"); if(!nom){ $("#f_nom").focus(); toast("Le nom est obligatoire"); return; }
